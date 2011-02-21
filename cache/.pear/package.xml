@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.8.0" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfProjectAnalyserPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>The sfProjectAnalyserPlugin allows you to analyse your symfony project, it can
+    raise several coding standards alerts. A YAML configuration file allows you to
+    switch what to analyse and also allows you to parameter threshold for each alert.</summary>
+ <description>The sfProjectAnalyserPlugin allows you to analyse your symfony project, it can raise several coding standards alerts. A YAML configuration file allows you to switch what to analyse and also allows you to parameter threshold for each alert.</description>
+ <lead>
+  <name>Vernet Loic</name>
+  <user>COil</user>
+  <email>qrf_coil@yahoo.fr</email>
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Marchal Gregoire</name>
+  <user>gregoire_m</user>
+  <email>gregoire.marchal@gmail.com</email>
+  <active>yes</active>
+ </developer>
+ <developer>
+  <name>Loeuillet Nicolas</name>
+  <user>NicolasLoeuillet</user>
+  <email>nicolas.loeuillet@gmail.com</email>
+  <active>yes</active>
+ </developer>
+ <helper>
+  <name>Levasseur Julien</name>
+  <user>arsenik7</user>
+  <email>julien.levasseur@gmail.com</email>
+  <active>yes</active>
+ </helper>
+ <date>2011-01-07</date>
+ <time>11:05:58</time>
+ <version>
+  <release>1.0.2</release>
+  <api>1.0.2</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="1ab6a691f56abfa22d1125290918812a" name="config/config_handlers.yml" role="data"/>
+   <file md5sum="f3d8642ce289bf49d11659a8c278640c" name="config/plugin_sfpa.yml" role="data"/>
+   <file md5sum="19f936e1459fbef91686e68fd779fc7c" name="lib/objects/paAlert.class.php" role="data"/>
+   <file md5sum="b02af6128e048939cfad9acb2f5eb5f5" name="lib/objects/paAlertable.class.php" role="data"/>
+   <file md5sum="9a76b41dfe974b9f9aee92e31e925020" name="lib/objects/paClass.class.php" role="data"/>
+   <file md5sum="d8954c4fe238ce98791b7fbe5c3ce76f" name="lib/objects/paInterface.class.php" role="data"/>
+   <file md5sum="8f8f9d306dfe43fc4aa40e7167c582c4" name="lib/objects/paProject.class.php" role="data"/>
+   <file md5sum="b0af1f80a0a302be734378bf1c0bd4e1" name="lib/objects/paSfAction.class.php" role="data"/>
+   <file md5sum="fbbe46d49ce2424425af014685697413" name="lib/objects/paSfApplication.class.php" role="data"/>
+   <file md5sum="66b06c82ed6f83c20637737d8ff24178" name="lib/objects/paSfClass.class.php" role="data"/>
+   <file md5sum="138734fd0cfc84e3c47eab232f0ddff0" name="lib/objects/paSfComponent.class.php" role="data"/>
+   <file md5sum="5c9d38342f0b21837960a8c7032e8f81" name="lib/objects/paSfLayout.class.php" role="data"/>
+   <file md5sum="4ba958e5f33a633dac5cbbc87f8247d1" name="lib/objects/paSfModule.class.php" role="data"/>
+   <file md5sum="baafe4501cb171d83133ed2542e4b13d" name="lib/objects/paSfPartial.class.php" role="data"/>
+   <file md5sum="0cb0d5b38ba7f460db433784781c3c2c" name="lib/objects/paSfPluginApplication.class.php" role="data"/>
+   <file md5sum="e5cfa1dc644a0fad768909a4b81ea7c5" name="lib/objects/paSfProject.class.php" role="data"/>
+   <file md5sum="670219d789dedd763a426b2135536e40" name="lib/objects/paSfTemplate.class.php" role="data"/>
+   <file md5sum="17d3f4d3d7c388375832bd37502d511d" name="lib/task/sfProjectAnalyseTask.class.php" role="data"/>
+   <file md5sum="252beb5fe4194ec2aa80ec50db5724fc" name="modules/sfProjectAnalyser/actions/actions.class.php" role="data"/>
+   <file md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/sfProjectAnalyser/templates/_partials/_alert_7002.php" role="data"/>
+   <file md5sum="5f2457b32ea6f5d4dadc87d8a479e75f" name="modules/sfProjectAnalyser/templates/_partials/_bis_partial_7001_2.php" role="data"/>
+   <file md5sum="101192b8f0729d07d09554f8f7e98d08" name="modules/sfProjectAnalyser/templates/_bis_partial_7001_1.php" role="data"/>
+   <file md5sum="d0d63b6f05547d8edd7f9e96dd110150" name="modules/sfProjectAnalyser/templates/alert6001Success.php" role="data"/>
+   <file md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/sfProjectAnalyser/templates/alert6002Success.php" role="data"/>
+   <file md5sum="80de23f3a225de3c8badd709dfa316ff" name="web/images/alert.png" role="data"/>
+   <file md5sum="c1ea06c68f7263ccb2f67fbbe83256f0" name="web/images/check.png" role="data"/>
+   <file md5sum="e009322a00011359f76cf7ae59b4d33d" name="web/images/minus.gif" role="data"/>
+   <file md5sum="6c46b98e0c60e6dc2ef14f9d4a6607b8" name="web/images/plus.gif" role="data"/>
+   <file md5sum="85b6ea8df93a0579506c25865b274c35" name="web/images/symfony.png" role="data"/>
+   <file md5sum="0cdd968bdb2f2852ec71e0264b3292cc" name="web/images/treeview-black-line.gif" role="data"/>
+   <file md5sum="a3ffb8abd978b0464f7b5b508fcfdef0" name="web/images/treeview-black.gif" role="data"/>
+   <file md5sum="c60f34bf5f39607b5eef30047958c50e" name="web/images/warning.png" role="data"/>
+   <file md5sum="5599992e55483430c29c73566ce681d6" name="web/css/jquery.treeview.css" role="data"/>
+   <file md5sum="c0ac4e323dfd52aaf1f80c9880b35e7b" name="web/js/jquery.js" role="data"/>
+   <file md5sum="3f81db67b7a973c8835ef5213e3b93c6" name="web/js/jquery.treeview.js" role="data"/>
+   <file md5sum="4a505eed0f06024117b12bea93a073bf" name="LICENSE" role="data"/>
+   <file md5sum="180e9befb813d7aff9e18e7e62863278" name="README" role="data"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   
+  </required>
+ </dependencies>
+ <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2011-01-07</date>
+   <notes>
+* Fixed the return code values
+* Fixed color for ignored objects
+* Deleted the sfProjectAnanlyserPlugin from the default config
+* Fixed wrong count of alerts when using the XML output
+* Fixed the color reporting for modules
+* Added the possibility to ignore files or objects
+* Fixed symfony CS ! :-)
+* Added plugin config controls so the user know its custom config file must be upgraded
+* Added alert for $this-&gt;executeXXX code at action level
+* Cleanup
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-12-21</date>
+   <notes>
+* Added a config option 'output' that allows to render the output as XML instead of HTML
+* Fixed missing files in Package.xml :|
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-12-21</date>
+   <notes>
+* Fixed the class grouping algorithm
+* Added a return system error code depending on the results of the analysis
+* Added a threshold for symfony extended class in order to avoid displaying all classes of a type (mainly for model classes)
+* Moved the 'plugin_assets_path' to the config plugin section
+* Added an global option 'plugin_assets_path' to set the path of the plugin's assets
+* Added a detected value 'all' for the config parameter [plugin][to_parse] to parse all the plugins of the project
+* Fixed a bug with report generation date
+* Added a config option for the compat10 mode
+* Fixed bad warning reporting when using validateXXX methods and the compat1.0 plugin
+* Fixed parsing of plugins [] = parse of no plugin
+* Alert for empty application layouts and partials
+* Alert for application layouts and partials code length
+* Count of layouts and partials code length of applications
+* Count of code and templates length by project, application, module
+* Allowed to switch off alert by putting a false parameter
+* Allowed to switch code length check to off if parameter is set to false instead of a threshold
+* Fixed module generic alert count
+* Fixed colored sections in red when having errors
+* Added a Javascript folding system to have a cascade display (+ an "expand all" button)
+* Skip auto-generated modules
+* Parse activated plugins code
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.1</release>
+    <api>0.9.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-07-01</date>
+   <notes>
+* Added alerts for modules empty templates or partials
+* Added alerts for too big modules templates or partials
+* A demo module is now provided, it includes an example of each kind of alert
+* Added count of modules templates and partials
+* Refactored the way alerts are processed
+* Switch percent to two digits        
+* Transfered the TODO list in the README file
+* Added an alert for functions with "sfContext::getInstance" calls
+* The parsing of the same named modules into different applications is now possible
+* Added an alert for functions without docblock
+* Corrected docblock length calculation
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.0</release>
+    <api>0.8.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-06-29</date>
+   <notes>
+* This is the 1st version of the plugin.
+   </notes>
+  </release>
+ </changelog>
+</package>

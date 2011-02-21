@@ -1,0 +1,8 @@
+a:14:{s:7:"attribs";a:2:{s:5:"xmlns";s:36:"http://pear.php.net/dtd/rest.release";s:18:"xsi:schemaLocation";s:77:"http://pear.php.net/dtd/rest.release http://pear.php.net/dtd/rest.release.xsd";}s:1:"p";a:2:{s:7:"attribs";a:1:{s:10:"xlink:href";s:31:"/REST/p/sfprojectanalyserplugin";}s:8:"_content";s:23:"sfProjectAnalyserPlugin";}s:1:"c";s:27:"plugins.symfony-project.org";s:1:"v";s:5:"0.8.0";s:2:"st";s:4:"beta";s:1:"l";s:11:"MIT license";s:1:"m";s:12:"Vernet Loïc";s:1:"s";s:497:"The sfProjectAnalyserPlugin allows you to analyse your symfony project, it can
+    raise several coding standards alerts. A YAML configuration file allows you to
+    switch what to analyse and also allows you to parameter threshold for each alerts.
+    Features list:
+      * Count applications, modules, actions (by project, application, module)
+      * Alert for actions code length
+      * Alert for methods visibility in the actions classes
+      * Alert for modules including too much actions";s:1:"d";s:105:"The sfProjectAnalyserPlugin allows you analyse your symfony project and to raise coding standards alerts.";s:2:"da";s:10:"2010-06-29";s:1:"n";s:0:"";s:1:"f";s:5:"23916";s:1:"g";s:92:"http://plugins.symfony-project.org/get/sfProjectAnalyserPlugin/sfProjectAnalyserPlugin-0.8.0";s:1:"x";a:1:{s:7:"attribs";a:1:{s:10:"xlink:href";s:17:"package.0.8.0.xml";}}}
