@@ -1,6 +1,6 @@
 <?php
 
-require_once '/www/symfony/lib/autoload/sfCoreAutoload.class.php';
+require_once 'lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration{
@@ -18,7 +18,7 @@ class ProjectConfiguration extends sfProjectConfiguration{
     //Add Some Behavior To Doctrine
     $this->enablePlugins('csDoctrineActAsSortablePlugin');
     $this->enablePlugins('sfDoctrineActAsSignablePlugin');
-    
+
     $this->enablePlugins('sfProjectAnalyserPlugin');
   }
 
