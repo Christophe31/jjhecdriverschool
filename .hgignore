@@ -1,4 +1,4 @@
-/log/*
-/cache/*
-/nbproject/*
-/lib/vendor/symfony/*
+/log/
+/cache/
+/nbproject/
+/lib/vendor/symfony/
