@@ -1,0 +1,4 @@
+[symfony]
+  name=jjhec
+  author=NoName Yet <my.email@mailbox.org>
+  orm=Doctrine
