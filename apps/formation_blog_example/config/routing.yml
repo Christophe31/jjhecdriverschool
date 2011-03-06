@@ -6,6 +6,13 @@ homepage:
   url:   /
   param: { module: default, action: index }
 
+insert_comments:
+  url:  /insert/comments/:post.:sf_format
+  param: { module: insert, action: comments}
+  requierements:
+    sf_format:  json
+    sf_method:  post
+    post:       \d+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
@@ -14,3 +21,4 @@ default_index:
 
 default:
   url:   /:module/:action/*
+

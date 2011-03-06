@@ -24,3 +24,53 @@ sfGuardUserProfile:
       onDelete: cascade
       foreignType: one
       foreignAlias: Profile
+
+
+# tables propres à la formation/au blog
+JjhecPost:
+  actAs:
+    Timestampable :   ~
+    Sortable:         ~
+    Signable:
+      uniqueBy:       category_id
+    Sluggable:
+      unique:         true
+      field:          [title]
+      canUpdate:      false
+    Versionable :
+      versionColumn:  version
+      className:      %CLASS%Version
+      fields:         [title, content]
+      auditLog:       true
+  columns:
+    author_id:        {type: integer, notnull: true}
+    category_id:      {type: integer, notnull: true}
+    title:            {type: string}
+    content:          {type: clob}
+  relations:
+    JjhecCategory:    {local: category_id, foreign: id}
+    JjhecComments:    {local: id,foreign: post_id,onDelete: CASCADE}
+
+JjhecComments:
+  actAs:
+    Timestampable :   ~
+  columns:
+    post_id:          {type: integer}
+    author_name:      {type: string}
+    mail:             {type: string}
+    ip:               {type: string}
+    content:          {type: clob}
+
+JjhecCategory:
+  actAs:
+     Timestampable :  ~
+     Signable :       ~
+     Sortable :       ~
+     Sluggable :
+       unique:        true
+       fields:        [title]
+       canUpdate:     false
+  columns:
+    title:            {type: string}
+    description:      {type: string(1024)}
+
