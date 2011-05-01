@@ -1,6 +1,6 @@
 strict digraph {
         subgraph cluster1 {
-                label="Developppers";
+                label="Developpers";
                 ch -> ch_pub     [label=push];
                 fr -> fr_pub     [label=push];
                 je -> je_pub     [label=push];
