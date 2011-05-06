@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{ asset('bundles/safe_driving/css/base.css') }}" type="text/css" media="all" />
+<title>{% block title %}Define title{% endblock %}</title>
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+{% block extra_js %} {% endblock %}
+{% block extra_css %} {% endblock %}
+</head>
+<body>
+<div id="document">
+<div id="header">
+<a href="{{ path('_home') }}">
+<img src="{{ asset('bundles/jjhec/images/logo.gif') }}" alt="Symfony">
+</a>
+</div>
+
+{% block content_header %}
+<ul id="menu">
+{% block content_header_more %}
+<li><a href="{{ path('_demo') }}">Demo Home</a></li>
+{% endblock %}
+</ul>
+
+<div style="clear: both"></div>
+{% endblock %}
+
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+
+</div>
+</body>
+</html>
+
