@@ -1,6 +1,6 @@
 <?php
 
-namespace jjhec\safe_drivingBundle\Controller;
+namespace Jjhec\SafeDrivingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('jjhecsafe_drivingBundle:Default:index.html.twig');
+        return $this->render('JjhecSafeDrivingBundle:Default:index.html.twig');
     }
 }
