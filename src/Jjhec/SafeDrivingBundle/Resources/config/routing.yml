@@ -1,3 +1,8 @@
 homepage:
     pattern:  /safe/
     defaults: { _controller: JjhecSafeDrivingBundle:Default:index }
+
+default:
+    resource: "@JjhecSafeDrivingBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /safe/default
