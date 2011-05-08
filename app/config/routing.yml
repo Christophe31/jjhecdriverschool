@@ -14,3 +14,9 @@ _demo:
 safe_driving:
     resource: "@JjhecSafeDrivingBundle/Resources/config/routing.yml"
 
+fos_user_sercurity:
+    resource: @FOSUserBundle/Resources/config/routing/security.xml
+
+fos_user_user:
+    resource: @FOSUserBundle/Resources/config/routing/user.xml
+    prefix: /user

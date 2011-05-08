@@ -44,6 +44,10 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        mappings:
+            FOSUserBundle: ~
+            JjhecSafeDrivingBundle:   ~
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -55,3 +59,10 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    class:
+        model:
+            user: Jjhec\SafeDrivingBundle\Entity\User

@@ -1,5 +1,5 @@
 <?php
-namespace Jjhec\SafeDriving\Entity
+namespace Jjhec\SafeDrivingBundle\Entity;
 
 /**
  * @orm:Entity
