@@ -2,6 +2,15 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import patterns, url
 
-urlpatterns = patterns('intranet.views',)
+urlpatterns = patterns('intranet.views',
+    # regex python:
+    # ^ debut, $ fin
+    # \S caracteres non blancs (espaces, tab)
+    # \d pour les numeriques.
+    # (regex) zone de l'url a renvoyer a la vue
+    # (?:regex) zone isolee pour y appliquer un 
+    #           repetiteur (ici ? pour dire 0 ou 1)
+    # (?P<arg_name>regex) permet de nommer le paramettre dans la regex.
+    url('^(?:name/(?P<name>\S*))?$','greetings'))
 
 # vim:set et sts=4 ts=4 tw=80:
