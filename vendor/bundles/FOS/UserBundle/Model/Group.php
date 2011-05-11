@@ -22,7 +22,7 @@ abstract class Group implements GroupInterface
     }
 
     public function addRole($role)
-    {
+    
         if (!$this->hasRole($role)) {
             $this->roles[] = strtoupper($role);
         }

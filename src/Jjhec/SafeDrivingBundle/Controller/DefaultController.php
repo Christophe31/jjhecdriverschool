@@ -19,4 +19,15 @@ class DefaultController extends Controller
     {
         return array('name' => $name);
     }
+
+    /**
+     * @extra:Route("/prefix/{var1}/{var2}", name="default.hello", requirements = {"var2" = "\d+"})
+     * @extra:Template("JjhecSafeDrivingBundle:DefaultController:helloAction")
+     * @extra:Secure(roles="Group")
+     * @extra:Cache(expires="+2 days")
+     */
+     public function specificHelloAction($var1, $var2)
+     {
+         return array('name' => $var1.($var2+2));
+     }
 }
