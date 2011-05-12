@@ -116,14 +116,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'jjhecdriverschool.intranet',
+    'jjhecdriverschool.common',
 )
 
-# Authentication backend, rappel du defaut et ajout du notre
-# qui permet d'avoir en base de donn?e un utilisateur anonyme
-# pour pouvoir donner des permissions au guest depuis l'admin
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
