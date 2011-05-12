@@ -105,9 +105,6 @@ ROOT_URLCONF = 'jjhecdriverschool.urls'
 
 TEMPLATE_DIRS = (
     path.join(basepath, 'templates'),
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
@@ -119,8 +116,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'jjhecdriverschool.intranet',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+)
+
+# Authentication backend, rappel du defaut et ajout du notre
+# qui permet d'avoir en base de donn?e un utilisateur anonyme
+# pour pouvoir donner des permissions au guest depuis l'admin
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 # A sample logging configuration. The only tangible logging
