@@ -78,8 +78,8 @@ class Vehicule(models.Model):
 
 
 class Event(models.Model):
-    name = models.CharField(u"nom", max_length=64)
-    comment = models.TextField(u"description", max_length=512)
+    name = models.CharField(u"nom", blank=True, max_length=64)
+    comment = models.TextField(u"description", blank=True, max_length=512)
 
     start = models.DateTimeField(u"debut")
     end = models.DateTimeField(u"fin")
@@ -98,7 +98,7 @@ class Event(models.Model):
         return self.name
 
 
-class Formation(models.Model):
+class Formation(Event):
     agence = models.ForeignKey(Place, verbose_name=u"lieu", null=True)
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
     event = models.OneToOneField(Event, verbose_name=u"evenement", null=True)
