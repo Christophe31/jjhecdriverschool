@@ -3,7 +3,6 @@
 from django.contrib import admin
 from common import models as mod
 
-
 class PackageInline(admin.TabularInline):
     model = mod.Package
 

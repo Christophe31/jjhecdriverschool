@@ -3,17 +3,20 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Place(models.Model):
     name = models.CharField(u"nom", max_length=64)
     road = models.CharField(u"rue", max_length=64)
     town = models.CharField(u"ville", max_length=64)
     postal_code = models.CharField(u"code postal", max_length=64)
-    agence = models.ForeignKey('self', verbose_name=u"agence",blank=True, null=True)
+    agence = models.ForeignKey('self', verbose_name=u"agence",
+                               blank=True, null=True)
 
     TYPES = (
         (0, "Agence"),
         (1, "Circuit"),
         (2, "Plateau"),
+        (3, "Centre de formation"),
     )
     type = models.IntegerField(u"type", choices=TYPES)
 
@@ -22,20 +25,35 @@ class Place(models.Model):
         ordering = ("id",)
 
     def __unicode__(self):
-        return u"%s %s"%(Place.TYPES[self.type], self.name)
+        return u"%s %s" % (dict(Place.TYPES)[self.type], self.name)
 
 
 class Formula(models.Model):
     name = models.CharField(u"nom", max_length=64)
     price = models.IntegerField(u"prix")
-    custommers = models.ManyToManyField(User, verbose_name=u"clients")
-    
+
     class Meta:
         verbose_name = u"formule"
         ordering = ("id",)
 
     def __unicode__(self):
-        return u"Formule %s (à %s €)"%(self.name, self.price)
+        return u"Formule %s (à %s €)" % (self.name, self.price)
+
+
+class Transaction(models.Model):
+    custommer = models.ForeignKey(User, verbose_name=u"clients")
+    seller = models.ForeignKey(User, verbose_name=u"commercial")
+    formula = models.ForeignKey(Formula, verbose_name=u"formule")
+    price = models.IntegerField(u"prix")
+    date = models.DateField(u"date", auto_now=True)
+
+    class Meta:
+        verbose_name = u"transaction"
+        ordering = ("id",)
+
+    def __unicode__(self):
+        return u"Vente par %s à %s pour %s €" % (self.seller.username,
+                                        self.custommer.username, self.price)
 
 
 class Package(models.Model):
@@ -59,6 +77,7 @@ class Package(models.Model):
 class Vehicule(models.Model):
     model = models.CharField(u"modele", max_length=64)
     matriculation = models.CharField(u"immatriculation", max_length=64)
+    agence = models.ForeignKey(Place, verbose_name=u"agence")
 
     TYPES = (
         (0, "Voiture"),
@@ -74,22 +93,38 @@ class Vehicule(models.Model):
         )
 
     def __unicode__(self):
-        return "%s (%s)"%(self.model, self.id)
+        return "%s (%s)" % (self.model, self.id)
 
 
 class Event(models.Model):
-    name = models.CharField(u"nom", blank=True, max_length=64)
-    comment = models.TextField(u"description", blank=True, max_length=512)
-
     start = models.DateTimeField(u"debut")
     end = models.DateTimeField(u"fin")
 
     TYPES = (
-        (0, "Revision"),
-        (1, "Immobilisation"),
-        (2, "Formation"),
+        (0, "Maintenance"),
+        (1, "Formation"),
+        (2, "Disponibilité"),
     )
     type = models.IntegerField("Type", choices=TYPES)
+
+    class Meta:
+        verbose_name = u"Evenement"
+        ordering = ("id",)
+
+    def __unicode__(self):
+        return "de %s à %s" % (self.start, self.end)
+
+
+class Maintenance(Event):
+    vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule")
+
+    TYPES = (
+        (0, "Maintenance"),
+        (1, "Formation"),
+        (2, "Disponibilité"),
+    )
+    type = models.IntegerField("Type", choices=TYPES)
+
     class Meta:
         verbose_name = u"Evenement"
         ordering = ("id",)
@@ -97,11 +132,9 @@ class Event(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Formation(Event):
     agence = models.ForeignKey(Place, verbose_name=u"lieu", null=True)
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
-    event = models.OneToOneField(Event, verbose_name=u"evenement", null=True)
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
 
     class Meta:
@@ -109,6 +142,4 @@ class Formation(Event):
         ordering = ("id",)
 
     def __unicode__(self):
-        return "formation du %s a %s"%(self.event.start, self.agence.name) 
-
-# vim:set et sts=4 ts=4 tw=80:
+        return "formation du %s a %s" % (self.event.start, self.agence.name)
