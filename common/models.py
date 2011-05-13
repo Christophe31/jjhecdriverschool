@@ -41,8 +41,10 @@ class Formula(models.Model):
 
 
 class Transaction(models.Model):
-    custommer = models.ForeignKey(User, verbose_name=u"clients")
-    seller = models.ForeignKey(User, verbose_name=u"commercial")
+    custommer = models.ForeignKey(User, verbose_name=u"clients",
+                                  related_name=u"transactions_buyed")
+    seller = models.ForeignKey(User, verbose_name=u"commercial",
+                               related_name=u"transactions_selled")
     formula = models.ForeignKey(Formula, verbose_name=u"formule")
     price = models.IntegerField(u"prix")
     date = models.DateField(u"date", auto_now=True)
@@ -118,15 +120,8 @@ class Event(models.Model):
 class Maintenance(Event):
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule")
 
-    TYPES = (
-        (0, "Maintenance"),
-        (1, "Formation"),
-        (2, "Disponibilité"),
-    )
-    type = models.IntegerField("Type", choices=TYPES)
-
     class Meta:
-        verbose_name = u"Evenement"
+        verbose_name = u"maintenance"
         ordering = ("id",)
 
     def __unicode__(self):

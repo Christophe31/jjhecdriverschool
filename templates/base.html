@@ -3,7 +3,14 @@
     <title>{% block title %}No title yet{% endblock %}</title>
   </head>
   <body>
+    {% if user.is_authenticated %}
+       <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    {% else %}
+      <p>Welcome, new user. Please log in.</p>
+    {% endif %}
     {% block content %}
     {% endblock %}
+    {% url admin %}
+    <a href="{% url hello_world.greetings "pamplemousse" %}"> are you a fruit?</a>
   </body>
 <html>
