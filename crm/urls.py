@@ -3,6 +3,6 @@
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('crm.views',
-    url('^(?:name/(?P<name>\S*))?$','greetings', name='intranet.greetings'))
+    url('^(?:name/(?P<name>\S*))?$','greetings', name='crm.index'))
 
 # vim:set et sts=4 ts=4 tw=80:
