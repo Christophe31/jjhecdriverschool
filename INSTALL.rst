@@ -6,7 +6,11 @@ This list need to be kept up to date, if we use packages (ex: forum, blog)
  - Django 1.3
 
 If you have installed python, you may want to use *"pip install django"* or
-*"easy_install django"* to deploy this dependency.
+*"easy_install django"* to deploy folowing dependencies.
+
+ - django-blog-zinnia
+ - django-tinymce
+
 
 Run the application
 ===================
