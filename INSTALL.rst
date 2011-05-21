@@ -2,15 +2,36 @@ Requirements
 ============
 This list need to be kept up to date, if we use packages (ex: forum, blog)
 
+Binary packages
+---------------
+
+Required:
+
  - Python 2.7
- - Django 1.3
+ - setuptools or distutils to deploy python requirments
 
-If you have installed python, you may want to use *"pip install django"* or
-*"easy_install django"* to deploy folowing dependencies.
+Optionnal:
 
+ - graphviz (to render database schemas)
+
+
+python pakages
+--------------
+
+If you have installed python, you may want to use *"pip install <pakage>"* or
+*"easy_install <package>"* to deploy folowing dependencies.
+
+ - django
  - django-blog-zinnia
  - django-tinymce
 
+Optionnal (you may have to comments lines in settings.py if you don't want some features):
+
+ - werkzeug (to use manage.py runserver_plus)
+ - `django-extensions`_
+ - django-debug-toolbar
+
+: _`django-extensions` : http://packages.python.org/django-extensions/
 
 Run the application
 ===================

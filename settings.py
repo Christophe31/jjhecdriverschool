@@ -27,6 +27,8 @@ LANGUAGE_CODE = 'fr-FR'
 
 SITE_ID = 1
 
+INTERNAL_IPS = ('127.0.0.1',)
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -37,7 +39,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = path.join(basepath, 'media')+'/'
+MEDIA_ROOT = path.join(basepath, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -88,6 +90,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -97,7 +100,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
-    'zinnia.context_processors.version', # Optional
+    'zinnia.context_processors.version',  # Optional
     'zinnia.context_processors.media',
 )
 
@@ -122,6 +125,8 @@ INSTALLED_APPS = (
     'tagging',
     'zinnia',
     'tinymce',
+    'django_extensions',
+    'debug_toolbar',
     # local apps
     'jjhecdriverschool.hello_world',
     'jjhecdriverschool.common',
