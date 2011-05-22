@@ -13,7 +13,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # index page
-    url(r'^$',include(hello_world.urls)),
+    url(r'^$', include(hello_world.urls)),
     # local apps routing
     url(r'^hello/', include(hello_world.urls)),
     url(r'^crm/', include(crm.urls)),

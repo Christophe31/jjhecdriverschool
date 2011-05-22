@@ -1,6 +1,7 @@
     <div id="main_menu" style="float:left;">
       <ul>
         <li><a href="{% url hello_world.index %}">hello_world</a></li>
+        <li><a href="/weblog/">blog</a></li>
         {% if perms.change_transaction %}
         <li><a href="{% url crm.index %}">crm</a></li>{% endif %}
         {% if user.is_authenticated %}
@@ -9,5 +10,8 @@
         <li><a href="{% url trainer.index %}">trainer</a></li>{% endif %}
         {% if user.is_staff %}
         <li><a href="/admin/">admin</a></li>{% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="{% url profile.logout %}">logout</a></li>{% else %}
+        <li><a href="{% url profile.login %}">login</a></li>{% endif %}
       </ul>
     </div>
