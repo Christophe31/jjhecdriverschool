@@ -12,7 +12,7 @@ def login(request):
     form = AuthenticationForm(data=request.POST or None)
     if request.POST and form.is_valid():
         auth_login(request, form.get_user())
-        return redirect('/')
+        return redirect(request.GET.get('next','/'))
     return render(request,
                   "profile/login.html",
                   {"form": form,})

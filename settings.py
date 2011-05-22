@@ -134,6 +134,7 @@ INSTALLED_APPS = (
 
 
 AUTH_PROFILE_MODULE = 'common.UserProfile'
+LOGIN_URL = '/profile/login'
 ZINNIA_AKISMET_COMMENT = False
 
 try:
