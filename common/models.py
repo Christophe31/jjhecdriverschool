@@ -7,9 +7,11 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
+    last_code_date = models.DateField(u"date du dernier code obtenu", null=True)
 
     def __str__(self):
         return "%s's profile" % self.user
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -141,10 +143,25 @@ class Maintenance(Event):
     def __unicode__(self):
         return self.name
 
+
+class CodeMark(models.Model):
+    mark = models.IntegerField("note")
+    date = models.DateTimeField("heure", auto_now=True)
+    user = models.ForeignKey(User, verbose_name="utilisateur noté")
+
+    class Meta:
+        verbose_name = u"note de code"
+        ordering = ("date",)
+
+    def __unicode__(self):
+        return "%s de %s le %s" % (self.mark, self.user.username, self.date)
+
+
 class Formation(Event):
     agence = models.ForeignKey(Place, verbose_name=u"lieu", null=True)
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
+    aptitude = models.IntegerField("aptitude relevée")
 
     class Meta:
         verbose_name = u"formation"
