@@ -125,8 +125,10 @@ INSTALLED_APPS = (
     'tagging',
     'zinnia',
     'tinymce',
+    'uni_form',
     'django_extensions',
     'debug_toolbar',
+
     # local apps
     'jjhecdriverschool.hello_world',
     'jjhecdriverschool.common',

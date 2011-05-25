@@ -23,6 +23,8 @@ If you have installed python, you may want to use *"pip install <pakage>"* or
 
  - django
  - django-blog-zinnia
+ - pil
+ - django-uni-form
  - django-tinymce
 
 Optionnal (you may have to comments lines in settings.py if you don't want some features):
