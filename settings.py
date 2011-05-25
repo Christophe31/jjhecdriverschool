@@ -81,8 +81,8 @@ SECRET_KEY = '2rz!4+4zbymz+rbppqlikpn*vxe1ym7=*vv*c^pfso+w=it5z8'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -93,6 +93,8 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'pagination.middleware.PaginationMiddleware',
+    'onlineuser.middleware.OnlineUserMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -102,6 +104,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'zinnia.context_processors.version',  # Optional
     'zinnia.context_processors.media',
+    'djangohelper.context_processors.ctx_config',
 )
 
 ROOT_URLCONF = 'jjhecdriverschool.urls'
@@ -128,16 +131,46 @@ INSTALLED_APPS = (
     'uni_form',
     'django_extensions',
     'debug_toolbar',
+    'pagination',
+    'south',
+    'lbforum',
+    'simpleavatar',
+    'djangohelper',
+    'onlineuser',
+    'attachments',
 
     # local apps
     'jjhecdriverschool.hello_world',
+    'jjhecdriverschool.crm',
+    'jjhecdriverschool.trainer',
+    'jjhecdriverschool.profile',
     'jjhecdriverschool.common',
 )
 
+DEBUG_TOOLBAR_CONFIG = {
+    "INTERCEPT_REDIRECTS": False,
+}
 
 AUTH_PROFILE_MODULE = 'common.UserProfile'
 LOGIN_URL = '/profile/login'
+LOGOUT_URL = '/profile/logout/'
+REGISTER_URL = '/profile/register/'
 ZINNIA_AKISMET_COMMENT = False
+LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
+
+CTX_CONFIG = {
+    'LBFORUM_TITLE': 'Safe Driving',
+    'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
+    'FORUM_PAGE_SIZE': 50,
+    'TOPIC_PAGE_SIZE': 20,
+    'LBFORUM_MEDIA_PREFIX': LBFORUM_MEDIA_PREFIX,
+    'LOGIN_URL': LOGIN_URL,
+    'LOGOUT_URL': LOGOUT_URL,
+    'REGISTER_URL': REGISTER_URL,
+}
+
+BBCODE_AUTO_URLS = True
+HTML_SAFE_TAGS = ['embed']
 
 try:
         from local_settings import *

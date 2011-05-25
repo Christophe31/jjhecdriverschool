@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'community/',include('lbforum.urls')),
 )
 if settings.DEBUG:
     urlpatterns += patterns('',
