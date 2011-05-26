@@ -151,8 +151,9 @@ DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
 
-AUTH_PROFILE_MODULE = 'common.UserProfile'
-LOGIN_URL = '/profile/login'
+#AUTH_PROFILE_MODULE = 'common.UserProfile'
+#AUTH_PROFILE_MODULE = 'lbforum.LBForumUserProfile'
+LOGIN_URL = '/profile/login/'
 LOGOUT_URL = '/profile/logout/'
 REGISTER_URL = '/profile/register/'
 ZINNIA_AKISMET_COMMENT = False

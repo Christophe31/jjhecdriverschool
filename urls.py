@@ -7,6 +7,7 @@ import crm.urls
 import profile.urls
 import trainer.urls
 from django.contrib import admin
+from lbforum.accountviews import profile as lbprofile
 admin.autodiscover()
 
 # ... the rest of your URLconf goes here ...
@@ -24,7 +25,8 @@ urlpatterns = patterns('',
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'community/',include('lbforum.urls')),
+    url(r'lbforum/',include('lbforum.urls')),
+    url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
 )
 if settings.DEBUG:
     urlpatterns += patterns('',
