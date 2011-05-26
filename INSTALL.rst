@@ -39,7 +39,12 @@ Optionnal (you may have to comments lines in settings.py if you don't want some 
 Run the application
 ===================
 To get a working database,
-python manage.py syncdb
+
+::
+
+    python manage.py syncdb
+    python manage.py migrate
+    python manage.py runserver
 
 it will create a sqlite database "sqlite.db" in the root od your project
 directory.
