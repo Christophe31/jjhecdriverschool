@@ -6,11 +6,13 @@ import hello_world.urls
 import crm.urls
 import profile.urls
 import trainer.urls
-from django.contrib import admin
 from lbforum.accountviews import profile as lbprofile
+
+from django.contrib import admin
 admin.autodiscover()
 
-# ... the rest of your URLconf goes here ...
+import mobileadmin
+mobileadmin.autoregister()
 
 urlpatterns = patterns('',
     # index page
@@ -27,6 +29,11 @@ urlpatterns = patterns('',
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'lbforum/',include('lbforum.urls')),
     url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
+)
+
+import pdb;pdb.set_trace()
+urlpatterns += patterns('',
+    (r'^ma/(.*)', mobileadmin.sites.site.index),
 )
 if settings.DEBUG:
     urlpatterns += patterns('',

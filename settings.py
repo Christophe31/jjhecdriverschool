@@ -105,6 +105,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'zinnia.context_processors.version',  # Optional
     'zinnia.context_processors.media',
     'djangohelper.context_processors.ctx_config',
+    'mobileadmin.context_processors.user_agent',
 )
 
 ROOT_URLCONF = 'jjhecdriverschool.urls'
@@ -138,6 +139,7 @@ INSTALLED_APPS = (
     'djangohelper',
     'onlineuser',
     'attachments',
+    'mobileadmin',
 
     # local apps
     'jjhecdriverschool.hello_world',
