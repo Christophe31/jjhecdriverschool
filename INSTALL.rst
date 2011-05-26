@@ -24,6 +24,7 @@ If you have installed python, you may want to use *"pip install <pakage>"* or
  - django
  - django-blog-zinnia
  - pil
+ - lbforum
  - django-uni-form
  - django-tinymce
 
