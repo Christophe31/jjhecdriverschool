@@ -175,6 +175,12 @@ CTX_CONFIG = {
 BBCODE_AUTO_URLS = True
 HTML_SAFE_TAGS = ['embed']
 
+
+#from mobileadmin.conf import settings as settings
+
+#mobileadmin_media_path = settings.MEDIA_PATH
+#mobileadmin_media_prefix = settings.MEDIA_PREFIX
+
 try:
         from local_settings import *
 except ImportError:

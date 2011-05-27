@@ -31,13 +31,18 @@ urlpatterns = patterns('',
     url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
 )
 
-import pdb;pdb.set_trace()
 urlpatterns += patterns('',
-    (r'^ma/(.*)', mobileadmin.sites.site.index),
+    (r'^ma/', include(mobileadmin.sites.site.urls)),
 )
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
               'document_root': settings.MEDIA_ROOT,
                }),
+    )
+
+    from mobileadmin.conf import settings as masettings
+
+    urlpatterns += patterns('django.views.static',
+        (masettings.MEDIA_REGEX, 'serve', {'document_root': masettings.MEDIA_PATH}),
     )
