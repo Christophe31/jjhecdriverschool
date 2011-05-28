@@ -29,51 +29,25 @@ SITE_ID = 1
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
 USE_L10N = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = path.join(basepath, 'media')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
+STATIC_ROOT = path.join(basepath,'static')
 STATIC_URL = '/static/'
 
-# URL prefix for admin static files -- CSS, JavaScript and images.
-# Make sure to use a trailing slash.
-# Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
 
-# Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
-# List of finder classes that know how to find static files in
-# various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -83,7 +57,6 @@ SECRET_KEY = '2rz!4+4zbymz+rbppqlikpn*vxe1ym7=*vv*c^pfso+w=it5z8'
 TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,8 +74,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
+    'django.core.context_processors.static',
     'django.core.context_processors.media',
-    'zinnia.context_processors.version',  # Optional
     'zinnia.context_processors.media',
     'djangohelper.context_processors.ctx_config',
     'mobileadmin.context_processors.user_agent',
@@ -140,6 +113,7 @@ INSTALLED_APPS = (
     'onlineuser',
     'attachments',
     'mobileadmin',
+    'jqmobile',
 
     # local apps
     'jjhecdriverschool.hello_world',
@@ -155,6 +129,7 @@ DEBUG_TOOLBAR_CONFIG = {
 
 #AUTH_PROFILE_MODULE = 'common.UserProfile'
 #AUTH_PROFILE_MODULE = 'lbforum.LBForumUserProfile'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 LOGIN_URL = '/profile/login/'
 LOGOUT_URL = '/profile/logout/'
 REGISTER_URL = '/profile/register/'
@@ -175,11 +150,6 @@ CTX_CONFIG = {
 BBCODE_AUTO_URLS = True
 HTML_SAFE_TAGS = ['embed']
 
-
-#from mobileadmin.conf import settings as settings
-
-#mobileadmin_media_path = settings.MEDIA_PATH
-#mobileadmin_media_prefix = settings.MEDIA_PREFIX
 
 try:
         from local_settings import *

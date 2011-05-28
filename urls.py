@@ -8,11 +8,10 @@ import profile.urls
 import trainer.urls
 from lbforum.accountviews import profile as lbprofile
 
+import jqmobile
 from django.contrib import admin
 admin.autodiscover()
-
-import mobileadmin
-mobileadmin.autoregister()
+jqmobile.autodiscover()
 
 urlpatterns = patterns('',
     # index page
@@ -24,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^trainer/', include(trainer.urls)),
     # external module routing
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^ma/', include(jqmobile.site.urls)),
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
@@ -31,15 +31,14 @@ urlpatterns = patterns('',
     url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
 )
 
-urlpatterns += patterns('',
-    (r'^ma/', include(mobileadmin.sites.site.urls)),
-)
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
               'document_root': settings.MEDIA_ROOT,
                }),
     )
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
 
     from mobileadmin.conf import settings as masettings
 
