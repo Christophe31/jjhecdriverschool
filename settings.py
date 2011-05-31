@@ -51,7 +51,21 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '2rz!4+4zbymz+rbppqlikpn*vxe1ym7=*vv*c^pfso+w=it5z8'
+if not hasattr(globals(), 'SECRET_KEY'):
+    SECRET_FILE = path.join(basepath, 'secret.txt')
+    try:
+        SECRET_KEY = open(SECRET_FILE).read().strip()
+    except IOError:
+        try:
+            from random import choice
+            import string
+            symbols = ''.join((string.lowercase, string.digits, string.punctuation ))
+            SECRET_KEY = ''.join([choice(symbols) for i in range(50)])
+            secret = file(SECRET_FILE, 'w')
+            secret.write(SECRET_KEY)
+            secret.close()
+        except IOError:
+            raise Exception('Please create a %s file with random characters to generate your secret key!' % SECRET_FILE)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -63,11 +77,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'pagination.middleware.PaginationMiddleware',
-    'onlineuser.middleware.OnlineUserMiddleware',
+#    'pagination.middleware.PaginationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+#    'onlineuser.middleware.OnlineUserMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django_authopenid.middleware.OpenIDMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'djangobb_forum.middleware.LastLoginMiddleware',
+    'djangobb_forum.middleware.UsersOnline',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -78,7 +98,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'zinnia.context_processors.media',
     'djangohelper.context_processors.ctx_config',
-    'mobileadmin.context_processors.user_agent',
+    'django_authopenid.context_processors.authopenid',
+    'djangobb_forum.context_processors.forum_settings',
 )
 
 ROOT_URLCONF = 'jjhecdriverschool.urls'
@@ -105,13 +126,11 @@ INSTALLED_APPS = (
     'uni_form',
     'django_extensions',
     'debug_toolbar',
-    'pagination',
     'south',
-    'lbforum',
-    'simpleavatar',
-    'djangohelper',
-    'onlineuser',
-    'attachments',
+    'registration',
+    'django_authopenid',
+    'messages',
+    'djangobb_forum',
     'mobileadmin',
     'jqmobile',
 
@@ -134,7 +153,7 @@ LOGIN_URL = '/profile/login/'
 LOGOUT_URL = '/profile/logout/'
 REGISTER_URL = '/profile/register/'
 ZINNIA_AKISMET_COMMENT = False
-LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
+#LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
 
 CTX_CONFIG = {
     'LBFORUM_TITLE': 'Safe Driving',
@@ -150,6 +169,14 @@ CTX_CONFIG = {
 BBCODE_AUTO_URLS = True
 HTML_SAFE_TAGS = ['embed']
 
+
+# Account settings
+ACCOUNT_ACTIVATION_DAYS = 10
+LOGIN_REDIRECT_URL = '/forum/'
+LOGIN_URL = '/forum/account/signin/'
+
+#Cache settings
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 try:
         from local_settings import *

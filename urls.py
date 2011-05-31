@@ -6,12 +6,13 @@ import hello_world.urls
 import crm.urls
 import profile.urls
 import trainer.urls
-from lbforum.accountviews import profile as lbprofile
 
 import jqmobile
 from django.contrib import admin
 admin.autodiscover()
 jqmobile.autodiscover()
+
+
 
 urlpatterns = patterns('',
     # index page
@@ -27,8 +28,8 @@ urlpatterns = patterns('',
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'lbforum/',include('lbforum.urls')),
-    url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
+#    url(r'lbforum/',include('lbforum.urls')),
+#    url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
 )
 
 if settings.DEBUG:
@@ -40,8 +41,23 @@ if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     urlpatterns += staticfiles_urlpatterns()
 
-    from mobileadmin.conf import settings as masettings
+#######
+# Forum
+#######
+from forms import RegistrationFormUtfUsername
+from djangobb_forum import settings as forum_settings
+from django_authopenid.urls import urlpatterns as authopenid_urlpatterns
+for i, rurl in enumerate(authopenid_urlpatterns):
+    if rurl.name == 'registration_register':
+        authopenid_urlpatterns[i].default_args.update({'form_class': RegistrationFormUtfUsername})
 
-    urlpatterns += patterns('django.views.static',
-        (masettings.MEDIA_REGEX, 'serve', {'document_root': masettings.MEDIA_PATH}),
+# PM Extension
+if (forum_settings.PM_SUPPORT):
+    urlpatterns += patterns('',
+        (r'^forum/pm/', include('messages.urls'))
     )
+
+urlpatterns += patterns('',
+    url(r'^forum/account/', include(authopenid_urlpatterns)),
+    url(r'^forum/', include('djangobb_forum.urls', namespace='djangobb')),
+)

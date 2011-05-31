@@ -8,3 +8,4 @@ syntax: glob
 *~
 out.err
 local_settings.py
+secret.txt
