@@ -97,7 +97,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.media',
     'zinnia.context_processors.media',
-    'djangohelper.context_processors.ctx_config',
     'django_authopenid.context_processors.authopenid',
     'djangobb_forum.context_processors.forum_settings',
 )
@@ -153,21 +152,6 @@ LOGIN_URL = '/profile/login/'
 LOGOUT_URL = '/profile/logout/'
 REGISTER_URL = '/profile/register/'
 ZINNIA_AKISMET_COMMENT = False
-#LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
-
-CTX_CONFIG = {
-    'LBFORUM_TITLE': 'Safe Driving',
-    'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
-    'FORUM_PAGE_SIZE': 50,
-    'TOPIC_PAGE_SIZE': 20,
-    'LBFORUM_MEDIA_PREFIX': LBFORUM_MEDIA_PREFIX,
-    'LOGIN_URL': LOGIN_URL,
-    'LOGOUT_URL': LOGOUT_URL,
-    'REGISTER_URL': REGISTER_URL,
-}
-
-BBCODE_AUTO_URLS = True
-HTML_SAFE_TAGS = ['embed']
 
 
 # Account settings
