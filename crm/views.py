@@ -1,18 +1,11 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
+from django.contrib.auth.decorators import permission_required
+from crm import forms
 
 
-# for each model, add, change and delete permission are created,
-# use a "@permission_required('type_model')" imply registred user.
-
-# from django.contrib.auth.decorators import permission_required
-# @permission_required('add_exemple')
-def greetings(request, name=None):
-    return render_to_response("crm/greetings.html",
-                              {
-                                  "name": name or "no_name"
-                              },
-                              context_instance=RequestContext(request)
-                             )
-
-# Create your views here.
+@permission_required('add_transaction')
+def selling(request, customer=None, transaction=None):
+    form = forms.TransactionSelling(request.POST or None, instance=transaction)
+    if request.POST and form.isvalid():
+        form.save()
+    return render(request, "crm/selling.html", {"form": form})

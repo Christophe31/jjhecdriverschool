@@ -57,7 +57,7 @@ class Formula(models.Model):
 
 
 class Transaction(models.Model):
-    custommer = models.ForeignKey(User, verbose_name=u"clients",
+    customer = models.ForeignKey(User, verbose_name=u"clients",
                                   related_name=u"transactions_buyed")
     seller = models.ForeignKey(User, verbose_name=u"commercial",
                                related_name=u"transactions_selled")
@@ -69,9 +69,13 @@ class Transaction(models.Model):
         verbose_name = u"transaction"
         ordering = ("id",)
 
+    @property
+    def reduction(self):
+        return self.price / self.formula.price * 100
+
     def __unicode__(self):
         return u"Vente par %s à %s pour %s €" % (self.seller.username,
-                                        self.custommer.username, self.price)
+                                        self.customer.username, self.price)
 
 
 class Package(models.Model):
@@ -145,7 +149,7 @@ class Maintenance(Event):
 
 
 class CodeMark(models.Model):
-    mark = models.IntegerField("note")
+    mark = models.IntegerField("note", )
     date = models.DateTimeField("heure", auto_now=True)
     user = models.ForeignKey(User, verbose_name="utilisateur noté")
 
