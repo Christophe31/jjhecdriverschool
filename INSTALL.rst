@@ -36,6 +36,12 @@ Optionnal (you may have to comments lines in settings.py if you don't want some 
 
 : _`django-extensions` : http://packages.python.org/django-extensions/
 
+ultimate command:
+
+easy_install django django-blog-zinnia pil django-uni-form django-tinymce jqmobile mobileadmin werkzeug django-extensions django-debug-toolbar south django-registration postmarkup django-haystack whoosh django-messages django-flatpages-tinymce pygments Markdown
+
+feel free to add if packages they miss
+
 Run the application
 ===================
 To get a working database,

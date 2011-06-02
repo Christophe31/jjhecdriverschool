@@ -2,6 +2,17 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from common import models as mod
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+
+
+class UserProfileInline(admin.StackedInline):
+    model = mod.UserProfile
+
+
+class UserProfileAdmin(UserAdmin):
+    inlines = (UserProfileInline,)
+
 
 class PackageInline(admin.TabularInline):
     model = mod.Package
@@ -9,10 +20,13 @@ class PackageInline(admin.TabularInline):
 
 class FormulaAdmin(admin.ModelAdmin):
     inlines = (PackageInline,)
-    # défini les champs à afficher pour retirer Users
-    # qui sera défini logiciellement depuis l'interface "faite main"
     fields = ("name","price")
 
+
+# Reecrit l'interface des utilisateurs dans l'admin avec nos
+# champs complementaires
+admin.site.unregister(User)
+admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(mod.Formula, FormulaAdmin)
 admin.site.register(mod.Vehicule)
