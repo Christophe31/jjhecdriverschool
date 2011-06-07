@@ -15,7 +15,7 @@ def selling(request, customer=None, transaction=None):
 
 
 @permission_required('view_customers')
-def view_customers(request):
+def view_customers(request, other=None):
     return render(request, "crm/view_customers.html",
                   {
                       'customers': User.objects.all(),
