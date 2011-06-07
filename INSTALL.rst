@@ -38,7 +38,7 @@ Optionnal (you may have to comments lines in settings.py if you don't want some 
 
 ultimate command:
 
-easy_install django django-blog-zinnia pil django-uni-form django-tinymce jqmobile mobileadmin werkzeug django-extensions django-debug-toolbar south django-registration postmarkup django-haystack whoosh django-messages django-flatpages-tinymce pygments Markdown
+easy_install django django-blog-zinnia pil django-uni-form django-tinymce jqmobile django-mobileadmin werkzeug django-extensions django-debug-toolbar south django-registration postmarkup django-haystack whoosh django-messages django-flatpages-tinymce pygments Markdown django_authopenid
 
 feel free to add if packages they miss
 

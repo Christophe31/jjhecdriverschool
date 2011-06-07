@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Liste des clients{% endblock %}
+{% block content %}
+<table>
+	<tr>
+		<td>UserName</td>
+		<td>Nom</td>
+		<td>Prénom</td>
+	</tr>
+	{% for customer in customers %}
+	<tr>
+		<td>{{ customer.username }}</td>
+		<td>{{ customer.firstname }}</td>
+		<td>{{ customer.lastname }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
