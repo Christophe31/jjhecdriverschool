@@ -35,7 +35,7 @@ USE_L10N = True
 MEDIA_ROOT = path.join(basepath, 'media')
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = path.join(basepath,'static')
+STATIC_ROOT = path.join(basepath, 'static')
 STATIC_URL = '/static/'
 
 
@@ -59,13 +59,16 @@ if not hasattr(globals(), 'SECRET_KEY'):
         try:
             from random import choice
             import string
-            symbols = ''.join((string.lowercase, string.digits, string.punctuation ))
+            symbols = ''.join((string.lowercase,
+                               string.digits,
+                               string.punctuation))
             SECRET_KEY = ''.join([choice(symbols) for i in range(50)])
             secret = file(SECRET_FILE, 'w')
             secret.write(SECRET_KEY)
             secret.close()
         except IOError:
-            raise Exception('Please create a %s file with random characters to generate your secret key!' % SECRET_FILE)
+            raise Exception('Please create a %s file with random characters '
+                            'to generate your secret key!' % SECRET_FILE)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -131,6 +134,7 @@ INSTALLED_APPS = (
     'django_authopenid',
     'messages',
     'djangobb_forum',
+    'haystack',
     'mobileadmin',
     'jqmobile',
 
@@ -154,6 +158,10 @@ LOGOUT_URL = '/profile/logout/'
 REGISTER_URL = '/profile/register/'
 ZINNIA_AKISMET_COMMENT = False
 
+# Haystack settings
+HAYSTACK_SITECONF = 'search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = path.join(basepath, 'djangobb_index')
 
 # Account settings
 ACCOUNT_ACTIVATION_DAYS = 10

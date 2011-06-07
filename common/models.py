@@ -1,13 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.db import models
+#from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    last_code_date = models.DateField(u"date du dernier code obtenu", null=True)
+    last_code_date = models.DateField(u"date du dernier code obtenu",
+                                      null=True)
+
+    class Meta:
+        permissions = (
+            ("view_customers", "Lister les clients"),
+        )
+    TYPES = (
+        (0, "Guest"),
+        (1, "Customer"),
+        (2, "Saleman"),
+        (3, "Trainer"),
+        (4, "Admin"),
+    )
+    type = models.IntegerField(u"type", choices=TYPES, default=0)
 
     def __str__(self):
         return "%s's profile" % self.user
@@ -165,7 +180,8 @@ class Formation(Event):
     agence = models.ForeignKey(Place, verbose_name=u"lieu", null=True)
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
-    aptitude = models.IntegerField("aptitude relevée")
+    aptitude = models.IntegerField("aptitude relevée",
+                                   choices=((i, i) for i in range(11)))
 
     class Meta:
         verbose_name = u"formation"

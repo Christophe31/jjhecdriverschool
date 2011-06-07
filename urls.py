@@ -13,7 +13,6 @@ admin.autodiscover()
 jqmobile.autodiscover()
 
 
-
 urlpatterns = patterns('',
     # index page
     url(r'^$', include(hello_world.urls)),
@@ -49,7 +48,9 @@ from djangobb_forum import settings as forum_settings
 from django_authopenid.urls import urlpatterns as authopenid_urlpatterns
 for i, rurl in enumerate(authopenid_urlpatterns):
     if rurl.name == 'registration_register':
-        authopenid_urlpatterns[i].default_args.update({'form_class': RegistrationFormUtfUsername})
+        authopenid_urlpatterns[i].default_args.update({
+                    'form_class': RegistrationFormUtfUsername
+        })
 
 # PM Extension
 if (forum_settings.PM_SUPPORT):
