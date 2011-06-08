@@ -2,9 +2,20 @@
 {% block title %}Liste des clients{% endblock %}
 
 {% block extra_head %}
-<script langage="javascript">
-function executeAction(select, id){
+<link href="{{MEDIA_URL}}jjhec/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
+<link href="{{MEDIA_URL}}jjhec/css/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript" language="javascript">
+console.log("test");
+$(document).ready(function() {
+	$('#example').dataTable();
 	
+} );
+
+function executeAction(select, id){
 	switch (select) 
 	{ 
 		case 1: 
@@ -25,27 +36,33 @@ function executeAction(select, id){
 {% endblock %}
 
 {% block content %}
-<table border='1'>
-	<tr>
-		<td width='100px'>UserName</td>
-		<td width='100px'>Nom</td>
-		<td width='100px'>Prenom</td>
-		<td width='100px'>Action</td>
-	</tr>
-	{% for customer in customers %}
-	<tr>
-		<td>{{ customer.username }}</td>
-		<td>{{ customer.firstname }}</td>
-		<td>{{ customer.lastname }}</td>
-		<td><select name="action" size="1" onchange="executeAction(this.selectedIndex, {{ customer.id }} )">
-				<option>-</option>
-				<option>Facturation</option>
-				<option>Nouveau score</option>
-				<option>Nouvelle formation</option>
-				<option>Inscription examen</option>
-			</select>
-		</td>
-	</tr>
-	{% endfor %}
-</table>
+<div id="tabcenter">
+	<table id="example">
+		<thead>
+			<tr>
+				<td width='100px'>UserName</td>
+				<td width='100px'>Nom</td>
+				<td width='100px'>Prenom</td>
+				<td width='100px'>Action</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+			<tr>
+				<td>{{ customer.username }}</td>
+				<td>{{ customer.firstname }}</td>
+				<td>{{ customer.lastname }}</td>
+				<td><select name="action" size="1" onchange="executeAction(this.selectedIndex, {{ customer.id }} )">
+						<option>-</option>
+						<option>Facturation</option>
+						<option>Nouveau score</option>
+						<option>Nouvelle formation</option>
+						<option>Inscription examen</option>
+					</select>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% endblock %}
