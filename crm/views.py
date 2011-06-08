@@ -19,18 +19,29 @@ def view_customers(request, other=None):
     return render(request, "crm/view_customers.html",
                   {
                       'customers': User.objects.all(),
-                  }
-                 )
+                  })
+
+
+@permission_required('view_customers')
+def register_user(request):
+    form = forms.UserForm()
+    return render(request, "crm/register_user.html",
+                  {
+                      'form':form,
+                  })
+
 
 
 @permission_required('view_customers')
 def billing(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
+    form = forms.BillingForm(user=request.user, customer = customer)
+
     return render(request, "crm/billing.html",
                   {
                       'customer': customer,
-                  }
-                 )
+                      'form' : form
+                  })
 
 
 @permission_required('view_customers')
@@ -39,8 +50,7 @@ def add_score(request, user_id=None):
     return render(request, "crm/add_score.html",
                   {
                       'customer': customer,
-                  }
-                 )
+                  })
 
 
 @permission_required('view_customers')
@@ -49,8 +59,7 @@ def register_formation(request, user_id=None):
     return render(request, "crm/register_formation.html",
                   {
                       'customer': customer,
-                  }
-                 )
+                  })
 
 
 @permission_required('view_customers')
@@ -59,5 +68,4 @@ def register_exam(request, user_id=None):
     return render(request, "crm/register_exam.html",
                   {
                       'customer': customer,
-                  }
-                 )
+                  })
