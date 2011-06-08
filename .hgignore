@@ -1,0 +1,11 @@
+syntax: glob
+
+*.pyc
+*.swp
+*.orig
+.project
+*.db
+*~
+out.err
+local_settings.py
+secret.txt
