@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
 from crm import forms
-from common import models
+#from common import models
 
 
 @permission_required('add_transaction')
