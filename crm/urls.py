@@ -3,7 +3,7 @@
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('crm.views',
-    url('^$','selling', name='crm.index'),
+    url('^$','view_customers', name='crm.index'),
     url('^list_customers$', 'view_customers', name='crm.view_customers'),
 
     url('^register_user/new$', 'register_user', name='crm.register_user'),
