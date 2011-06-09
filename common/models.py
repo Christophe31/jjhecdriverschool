@@ -10,6 +10,11 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     last_code_date = models.DateField(u"date du dernier code obtenu",
                                       null=True)
+    birth_date = models.DateField(u"date de naissance")
+    adress = models.CharField(max_length=512)
+    postal_code = models.IntegerField()
+    town = models.CharField(max_length=256)
+    phone_number = models.CharField(max_length=16)
 
     class Meta:
         permissions = (
