@@ -187,6 +187,8 @@ class Formation(Event):
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
     aptitude = models.IntegerField("aptitude relevée",
                                    choices=((i, i) for i in range(11)))
+    trainer = models.ForeignKey(User, verbose_name="Formateur")
+    transaction = models.ForeignKey(Transaction, verbose_name="Contrat lié")
 
     class Meta:
         verbose_name = u"formation"
