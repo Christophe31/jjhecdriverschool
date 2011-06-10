@@ -1,0 +1,19 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+register_exam
+{% endblock %}
+{% block extra_head %}
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+<form method='post' class='uniForm'>
+  {% csrf_token %}
+  <div>
+      {{ form|as_uni_form }}
+    <div class="buttonHolder">
+      <button type="submit" class="primaryAction">register_exam</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+    {% load flatpages %}
+    <div id="main_menu" style="float:left;">
+      <ul>
+        <li><a href="{% url hello_world.index %}">hello_world</a></li>
+        <li><a href="{% url zinnia_entry_archive_index %}">blog</a></li>
+        <li><a href="{% url djangobb:index %}">forum</a></li>
+        <li><ul>
+          {% get_flatpages for user as static_pages %}
+          {% for page in static_pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+          {% endfor %}
+        </ul></li>
+        {% if perms.change_transaction %}
+        <li><a href="{% url crm.index %}">crm</a></li>{% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="{% url profile.index %}">profile</a></li>{% endif %}
+        {% if perms.change_results %}
+        <li><a href="{% url trainer.index %}">trainer</a></li>{% endif %}
+        {% if user.is_staff %}
+        <li><a href="{% url admin:index %}">admin</a></li>{% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="{% url profile.logout %}">logout</a></li>{% else %}
+        <li><a href="{% url profile.login %}">login</a></li>{% endif %}
+      </ul>
+    </div>

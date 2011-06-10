@@ -1,0 +1,51 @@
+﻿{% extends 'base.html' %}
+{% block title %}Liste des clients{% endblock %}
+
+{% block extra_head %}
+<script langage="javascript">
+function executeAction(select, id){
+	
+	switch (select) 
+	{ 
+		case 1: 
+		window.location.replace("{% url crm.billing 9001 %}".replace('9001', id ));
+		break; 
+		case 2: 
+		window.location.replace("{% url crm.add_score 9001 %}".replace('9001', id ));
+		break; 
+		case 3: 
+		window.location.replace("{% url crm.register_formation 9001 %}".replace('9001', id ));
+		break;
+		case 4: 
+		window.location.replace("{% url crm.register_exam 9001 %}".replace('9001', id ));
+		break;
+	}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<table border='1'>
+	<tr>
+		<td width='100px'>UserName</td>
+		<td width='100px'>Nom</td>
+		<td width='100px'>Prenom</td>
+		<td width='100px'>Action</td>
+	</tr>
+	{% for customer in customers %}
+	<tr>
+		<td>{{ customer.username }}</td>
+		<td>{{ customer.firstname }}</td>
+		<td>{{ customer.lastname }}</td>
+		<td><select name="action" size="1" onchange="executeAction(this.selectedIndex, {{ customer.id }} )">
+				<option>-</option>
+				<option>Facturation</option>
+				<option>Nouveau score</option>
+				<option>Nouvelle formation</option>
+				<option>Inscription examen</option>
+			</select>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>{% block title %}No title yet{% endblock %}</title>
+    {% include "uni_form_includes.html" %}
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+  <body>
+{% include "main_menu.html" %}
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    {% else %}
+    <p>Welcome, new user. Please log in.</p>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+  </body>
+<html>
