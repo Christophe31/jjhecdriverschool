@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}No title yet{% endblock %}</title>
+    {% include "uni_form_includes.html" %}
+    {% block extra_head %}
+    {% endblock %}
+<meta charset="utf-8">
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/maxheight.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/cufon-yui.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/cufon-replace.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/Myriad_Pro_300.font.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/Myriad_Pro_400.font.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.faded.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jqtransform.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/script.js"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/html5.js"></script>
+<![endif]-->
+</head>
+  <body>
+<div class="tail-top">
+{% include "main_menu.html" %}
+    {% block content %}
+    {% endblock %}
+    {% include "main_footer.html" %}
+	</div>
+  </body>
+<html>
