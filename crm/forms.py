@@ -5,12 +5,6 @@ from django.contrib.auth import models as auth_models
 from common import models
 
 
-class TransactionSellingForm(forms.ModelForm):
-
-    class Meta:
-        model = models.Transaction
-
-
 class UserForm(forms.Form):
     username = forms.CharField()
     first_name = forms.CharField()
@@ -28,27 +22,26 @@ class UserForm(forms.Form):
         super(UserForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        if self.isvalid():
-            cd = self.cleaned_data
-            usr = auth_models.User(
-                        username=cd["username"],
-                        first_name=cd["first_name"],
-                        last_name=cd["last_name"],
-                        email=cd["email"],
-                )
-            usr.set_password()
-            prof = models.UserProfile(
-                        user=usr,
-                        birth_date=cd["birth_date"],
-                        last_code_date=cd["last_code_date"],
-                        adress=cd["adress"],
-                        postal_code=cd["postal_code"],
-                        town=cd["town"],
-                        phone_number=cd["phone_number"],
-                        type=dict((v,k) for k,v in  models.UserProfile.TYPES)
-                                                                  ["Customer"]
-                )
-            prof.save()
+        cd = self.cleaned_data
+        usr = auth_models.User(
+                    username=cd["username"],
+                    first_name=cd["first_name"],
+                    last_name=cd["last_name"],
+                    email=cd["email"],
+            )
+        usr.set_password()
+        prof = models.UserProfile(
+                    user=usr,
+                    birth_date=cd["birth_date"],
+                    last_code_date=cd["last_code_date"],
+                    adress=cd["adress"],
+                    postal_code=cd["postal_code"],
+                    town=cd["town"],
+                    phone_number=cd["phone_number"],
+                    type=dict((v,k) for k,v in  models.UserProfile.TYPES)
+                                                              ["Customer"]
+            )
+        prof.save()
 
 
 class BillingForm(forms.ModelForm):
@@ -72,11 +65,10 @@ class CodeMarkForm(forms.ModelForm):
         model = models.CodeMark
         exclude=('user',)
 
-    def save(self, *args,**kwargs):
-        super(CodeMarkForm,self).save()
-        if self.isvalid():
-            cd = self.cleaned_data
-            self.instance.user = cd["user"]
+    def __init__(self, *args,**kwargs):
+        customer = kwargs.pop('user', None)
+        super(CodeMarkForm,self).__init__(*args,**kwargs)
+        self.instance.user = customer
 
 
 class TransactionSelling(forms.ModelForm):

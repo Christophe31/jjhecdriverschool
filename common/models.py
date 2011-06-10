@@ -169,7 +169,7 @@ class Maintenance(Event):
 
 
 class CodeMark(models.Model):
-    mark = models.IntegerField("note", )
+    mark = models.IntegerField("note", choices=((i, str(i)) for i in range(41)))
     date = models.DateTimeField("heure", auto_now=True)
     user = models.ForeignKey(User, verbose_name="utilisateur noté")
 
@@ -186,7 +186,7 @@ class Formation(Event):
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
     aptitude = models.IntegerField("aptitude relevée",
-                                   choices=((i, i) for i in range(11)))
+                                   choices=((i, str(i)) for i in range(11)))
     trainer = models.ForeignKey(User, verbose_name="Formateur")
     transaction = models.ForeignKey(Transaction, verbose_name="Contrat lié")
 
