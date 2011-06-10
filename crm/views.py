@@ -35,6 +35,7 @@ def register_user(request):
 @permission_required('view_customers')
 def billing(request, user_id=None, bill_id=None):
     customer = get_object_or_404(User, pk=user_id)
+
     if bill_id:
         instance = get_object_or_404(models.Transaction, id=bill_id)
     else:
@@ -43,7 +44,7 @@ def billing(request, user_id=None, bill_id=None):
     if request.POST:
         form = forms.BillingForm(request.POST, instance=instance,
                                  user=request.user, customer=customer)
-        if form.isvalid():
+        if form.is_valid():
             form.save()
     else:
         form = forms.BillingForm(user=request.user, customer=customer)

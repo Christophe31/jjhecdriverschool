@@ -66,9 +66,6 @@ class BillingForm(forms.ModelForm):
         self.instance.seller = seller
         self.instance.customer = customer
 
-    def clean(self, *args, **kwargs):
-        super(BillingForm, self).save(*args, **kwargs)
-
 
 
 class TransactionSelling(forms.ModelForm):
