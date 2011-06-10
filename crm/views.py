@@ -1,17 +1,9 @@
 # -*- coding:utf8 -*-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
 from crm import forms
 from common import models
-
-
-@permission_required('add_transaction')
-def selling(request, customer=None, transaction=None):
-    form = forms.TransactionSelling(request.POST or None, instance=transaction)
-    if request.POST and form.isvalid():
-        form.save()
-    return render(request, "crm/selling.html", {"form": form})
 
 
 @permission_required('view_customers')
@@ -31,11 +23,9 @@ def register_user(request):
                   })
 
 
-
 @permission_required('view_customers')
 def billing(request, user_id=None, bill_id=None):
     customer = get_object_or_404(User, pk=user_id)
-
     if bill_id:
         instance = get_object_or_404(models.Transaction, id=bill_id)
     else:
@@ -46,6 +36,7 @@ def billing(request, user_id=None, bill_id=None):
                                  user=request.user, customer=customer)
         if form.is_valid():
             form.save()
+            return redirect('crm.index')
     else:
         form = forms.BillingForm(user=request.user, customer=customer)
 
@@ -59,8 +50,16 @@ def billing(request, user_id=None, bill_id=None):
 @permission_required('view_customers')
 def add_score(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
+    if request.POST:
+        form = forms.CodeMarkForm(request.POST, user=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('crm.index')
+    else:
+        form = forms.CodeMarkForm(user=customer)
     return render(request, "crm/add_score.html",
                   {
+                      'form': form,
                       'customer': customer,
                   })
 
