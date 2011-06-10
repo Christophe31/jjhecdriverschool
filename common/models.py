@@ -10,11 +10,11 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     last_code_date = models.DateField(u"date du dernier code obtenu",
                                       null=True)
-    birth_date = models.DateField(u"date de naissance")
-    adress = models.CharField(max_length=512)
-    postal_code = models.IntegerField()
-    town = models.CharField(max_length=256)
-    phone_number = models.CharField(max_length=16)
+    birth_date = models.DateField(u"date de naissance", null=True)
+    adress = models.CharField(max_length=512, null=True)
+    postal_code = models.IntegerField(null=True)
+    town = models.CharField(max_length=256, null=True)
+    phone_number = models.CharField(max_length=16, null=True)
 
     class Meta:
         permissions = (
