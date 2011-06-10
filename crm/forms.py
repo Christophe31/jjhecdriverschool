@@ -67,10 +67,16 @@ class BillingForm(forms.ModelForm):
         self.instance.customer = customer
 
 
-
-class TransactionSelling(forms.ModelForm):
+class CodeMarkForm(forms.ModelForm):
     class Meta:
-        model = models.Transaction
+        model = models.CodeMark
+        exclude=('user',)
+
+    def save(self, *args,**kwargs):
+        super(CodeMarkForm,self).save()
+        if self.isvalid():
+            cd = self.cleaned_data
+            self.instance.user = cd["user"]
 
 
 class TransactionSelling(forms.ModelForm):
