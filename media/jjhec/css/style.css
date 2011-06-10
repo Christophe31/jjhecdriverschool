@@ -10,9 +10,9 @@ html, body {height:100%}
 /* Header */
 header .container {height:131px;overflow:hidden;position:relative}
 /* Sidebar */
-aside {background:url(/media/jjhec/images/aside-tail.gif) repeat-x left top #131313;min-width:980px}
+aside {background:url(/media/jjhec/images/aside-tail.gif) repeat-x left top #131313;min-width:980px;margin:0;padding0}
 /* Footer */
-footer .container {text-align:center;line-height:1.667em;padding:26px 0}
+footer .container {text-align:center;width:100%;line-height:1.667em;padding:26px 0;background-color:#fff}
 /* Left & Right alignment */
 .fleft {float:left}
 .fright {float:right}
@@ -23,11 +23,9 @@ footer .container {text-align:center;line-height:1.667em;padding:26px 0}
 .wrapper {width:100%;overflow:hidden}
 .wrap {width:100%}
 /* tailings */
-.tail-top, .tail-top1, .tail-top2, .tail-top3 {background-repeat:repeat-x;background-color:#f2f2f2;background-position:left top;min-width:980px}
+.tail-top{background-repeat:repeat-x repeat-y;background-color:#f2f2f2;background-position:left top;min-width:980px}
 .tail-top {background-image:url(/media/jjhec/images/tail-top.gif)}
-.tail-top1 {background-image:url(/media/jjhec/images/tail-top1.gif)}
-.tail-top2 {background-image:url(/media/jjhec/images/tail-top2.gif)}
-.tail-top3 {background-image:url(/media/jjhec/images/tail-top3.gif)}
+
 /* form defaults */
 input, select, textarea {font-family:Arial, Helvetica, sans-serif;font-size:1em;vertical-align:middle;font-weight:normal;color:#393939;margin:0;padding:0}
 fieldset {border:0}

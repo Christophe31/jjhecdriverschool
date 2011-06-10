@@ -10,5 +10,5 @@ $(document).ready(function(){
 		
 		$('#domain-form').jqTransform({imgPath:'jqtransformplugin/img/'});
 	});
-	new ElementMaxHeight();
+    Cufon.now();
  });
