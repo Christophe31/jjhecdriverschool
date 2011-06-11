@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 		$('#domain-form').jqTransform({imgPath:'jqtransformplugin/img/'});
 	});
+    $('.dateinput').datepicker();
     Cufon.now();
  });
 
