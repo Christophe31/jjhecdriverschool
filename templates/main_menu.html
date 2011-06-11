@@ -45,7 +45,7 @@
 						<input type="text" name="username" value="Username" onFocus="if(this.value=='Username'){this.value=''}" onBlur="if(this.value==''){this.value='Username'}">
 					</span>
 					<span class="text">
-						<input type="password" name="password" value="Password" onFocus="if(this.value=='Password'){this.value=''}" onBlur="if(this.value==''){this.value='Password'}">
+            <input type="password" onKeyPress="return loginFormKeyPressed(this,event)" name="password" value="Password" onFocus="if(this.value=='Password'){this.value=''}" onBlur="if(this.value==''){this.value='Password'}">
 					</span>
 					<a href="#" class="login" onClick="document.getElementById('login-form').submit()"><span><span>Login</span></span></a>
           {# <span class="links"><a href="#">Forgot Password?</a><br/><a href="#">Register</a></span> #}
