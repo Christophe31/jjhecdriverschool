@@ -7,8 +7,24 @@ $(document).ready(function(){
 			autoplay: 10000,
 			autopagination:false
 		});
-		
+
 		$('#domain-form').jqTransform({imgPath:'jqtransformplugin/img/'});
 	});
     Cufon.now();
  });
+
+function loginFormKeyPressed(field, evt){
+  var keycode;
+  if (window.event)
+    keycode = window.event.keyCode;
+  else if (evt)
+    keycode = evt.which;
+  else
+    return true;
+  if (keycode == 13){
+    field.form.submit();
+    return false;
+  }
+  else
+    return true;
+}
