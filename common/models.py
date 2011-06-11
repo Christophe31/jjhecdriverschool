@@ -196,3 +196,14 @@ class Formation(Event):
 
     def __unicode__(self):
         return "formation du %s a %s" % (self.event.start, self.agence.name)
+
+
+class Exam(Event):
+    subscribers = models.ManyToManyField(User)
+    TYPES = (
+        (0, "Code"),
+        (1, "Permis Auto"),
+        (2, "Permis Moto"),
+    )
+    license = models.IntegerField("Type", choices=TYPES)
+    # trainer = models.ForeignKey(User)
