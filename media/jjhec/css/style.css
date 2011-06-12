@@ -192,3 +192,5 @@ a.jqTransformCheckbox {background:transparent url(/media/jjhec/images/checkbox.g
 a.jqTransformChecked {background-position:left top}
 /* Hidden - used to hide the original form elements */
 .jqTransformHidden {display:none}
+
+#blog_sidebar{width:400px;float:right;}
