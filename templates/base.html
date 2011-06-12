@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}No title yet{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | Safe Driving</title>
     {% include "uni_form_includes.html" %}
     {% block extra_head %}
     {% endblock %}
 <meta charset="utf-8">
+<link rel="shortcut icon" href="/favicon.ico" />
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/style.css" type="text/css" media="all">
@@ -18,6 +19,8 @@
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.faded.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jqtransform.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/script.js"></script>
+    {% block jjhec_extra_head %}
+    {% endblock %}
 <!--[if lt IE 7]>
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <![endif]-->
@@ -30,7 +33,10 @@
 {% include "main_menu.html" %}
     {% block content %}
     {% endblock %}
-    {% include "main_footer.html" %}
+	
+	{% block sidebar %}
+	{% endblock %}
+{% include "main_footer.html" %}
 	</div>
   </body>
 <html>
