@@ -1,5 +1,8 @@
 syntax: glob
 
+media/forum/attachments/*
+djangobb_index/*
+media/uploads/*
 *.pyc
 *.swp
 *.orig
