@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load zinnia_tags tagging_tags i18n %}
+{% tags_for_model zinnia.entry as tag_entry %}
+
+{% block extra_head %}
+    <meta name="description" content="{% block meta-description %}Demonstration of the Zinnia Blog application.{% endblock %}" />
+    <meta name="keywords" content="blog, {{ tag_entry|join:", "}}, {% block meta-keywords %}{% endblock %}" />
+    {% block meta %}{% endblock %}    
+	<link rel="home" href="{% url zinnia_entry_archive_index %}" />
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ ZINNIA_MEDIA_URL }}css/screen.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="{{ ZINNIA_MEDIA_URL }}css/print.css" />
+    <!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{ ZINNIA_MEDIA_URL }}css/ie.css" />
+    <![endif]-->
+    {% get_archives_entries "zinnia/tags/archives_entries_link.html" %}
+{% endblock %}
+
+    <div class="container">
+      <div id="header" class="span-24 last">
+		<h1>
+		  <a href="{% url zinnia_entry_archive_index %}" title="Zinnia's Blog" rel="home">
+			Safe Driving's Blog
+		  </a>
+		</h1>
+      </div>
+      <div id="body" class="span-24 last">
+		<div id="content" class="hfeed span-16 border">
+		  {% block content %}
+		  {% endblock %}
+		</div>
+		<div id="sidebar" class="span-8 last">
+			{% block sidebar %}
+				{% include "zinnia/base_sidebar.html" %}
+			{% endblock %}
+		</div>
+      </div>
+    </div>
