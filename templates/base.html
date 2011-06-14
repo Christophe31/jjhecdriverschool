@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %} | Safe Driving</title>
-    {% include "uni_form_includes.html" %}
-    {% block extra_head %}
-    {% endblock %}
 <meta charset="utf-8">
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/style.css" type="text/css" media="all">
-<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/jquery-ui-1.8.custom.css" type="text/css" />
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/jquery-ui-1.7.2.custom.css" type="text/css" />
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/maxheight.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -21,6 +18,9 @@
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.faded.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jqtransform.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/script.js"></script>
+    {% include "uni_form_includes.html" %}
+    {% block extra_head %}
+    {% endblock %}
     {% block jjhec_extra_head %}
     {% endblock %}
 <!--[if lt IE 7]>
@@ -35,7 +35,7 @@
 {% include "main_menu.html" %}
     {% block content %}
     {% endblock %}
-	
+
 	{% block sidebar %}
 	{% endblock %}
 {% include "main_footer.html" %}
