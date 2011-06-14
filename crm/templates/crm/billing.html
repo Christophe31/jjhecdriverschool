@@ -8,22 +8,18 @@ Billing
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 <script langage="javascript">
 var price;
-
-$(document).ready(function(){
+$(function(){
 	$("#id_formula").change(function(){
-		price = $("#id_formula").html().split("(à ")[1].split(" €)")[0];	
+		price = $("#id_formula").html().split("(à ")[1].split(" €)")[0];
 		$('#id_price').val(price);
 		$("#remise").val(0);
 	});
-});
 
-$(document).ready(function(){
+
 	$("#id_price").change(function(){
-		$("#remise").val(100-(($('#id_price').val()/price)*100));
+		$("#id_remise").val(100-(($('#id_price').val()/price)*100));
 	});
-});
 
-$(document).ready(function(){
 	$("#remise").change(function(){
 		$("#id_price").val(price-price*$("#remise").val()/100);
 	});
@@ -35,12 +31,12 @@ $(document).ready(function(){
   {% csrf_token %}
   <div>
       {{ form|as_uni_form }}
-	<div class="ctrlHolder "> 
-            <label for="rate"> 
-                Remise<span></span> 
-            </label> 
-            <input id="remise" type="text" class="textinput textInput" name="remise" /> %
-    </div> 
+	<div class="ctrlHolder ">
+            <label for="rate">
+                Remise<span></span>
+            </label>
+            <input id="id_remise" type="text" class="textinput textInput" name="remise" /> %
+    </div>
     <div class="buttonHolder">
       <button type="submit" class="primaryAction">Billing</button>
     </div>
