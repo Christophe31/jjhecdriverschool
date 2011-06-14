@@ -18,9 +18,6 @@ class UserForm(forms.Form):
     town = forms.CharField(u"Ville")
     phone_number = forms.RegexField(regex=r'\d{2}.\d{2}.\d{2}.\d{2}.\d{2}')
 
-    def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
-
     def save(self):
         cd = self.cleaned_data
         usr = auth_models.User(
@@ -67,7 +64,7 @@ class CodeMarkForm(forms.ModelForm):
 
     def __init__(self, *args,**kwargs):
         customer = kwargs.pop('user', None)
-        super(CodeMarkForm,self).__init__(*args,**kwargs)
+        super(CodeMarkForm, self).__init__(*args,**kwargs)
         self.instance.user = customer
 
 
