@@ -1,17 +1,20 @@
-$(document).ready(function(){
+$(function(){
   $("a.new_window").attr("target", "_blank");
-  	$(function(){
-		$("#faded").faded({
-			speed: 500,
-			crossfade: true,
-			autoplay: 10000,
-			autopagination:false
-		});
+  var e = $("#faded");
+  if (e.length != 0)
+    e.faded({
+	    speed: 500,
+	    crossfade: true,
+	    autoplay: 10000,
+	    autopagination:false
+	  });
 
-		$('#domain-form').jqTransform({imgPath:'jqtransformplugin/img/'});
-	});
-    $('.dateinput').datepicker();
-    Cufon.now();
+  if ((e = $('#domain-form')).length != 0)
+    e.jqTransform({imgPath:'jqtransformplugin/img/'});
+
+  if ((e = $('.dateinput')).length != 0)
+    e.datepicker();
+  Cufon.now();
  });
 
 function loginFormKeyPressed(field, evt){
