@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from os import path
 basepath = path.abspath(path.dirname(__file__))
 
@@ -150,7 +152,7 @@ DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
 
-#AUTH_PROFILE_MODULE = 'common.UserProfile'
+AUTH_PROFILE_MODULE = 'common.UserProfile'
 #AUTH_PROFILE_MODULE = 'lbforum.LBForumUserProfile'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 LOGIN_URL = '/profile/login/'

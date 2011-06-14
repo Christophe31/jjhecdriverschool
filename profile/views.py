@@ -1,7 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, Http404
+from django.utils import simplejson as json
+from profile import forms
+import datetime
+import time
 from common import models
 
 
@@ -9,6 +17,17 @@ def greetings(request, name=None):
     return render(request,
                   "profile/greetings.html",
                   {"name": name or "no_name"})
+
+
+def edit_profile(request):
+    if request.POST:
+        form = forms.UserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile.index')
+    else:
+        form = forms.UserForm(instance=request.user)
+    return render(request,"profile/edit_profile.html",{"form": form})
 
 
 def login(request):
@@ -19,6 +38,27 @@ def login(request):
     return render(request,
                   "profile/login.html",
                   {"form": form})
+
+
+@csrf_exempt
+def ajax_get_notes_range(request, start=None, end=False):
+    qs = request.user.codemark_set.all()
+    if start:
+        try:
+            qs.filter(date__gt=datetime.datetime.fromtimestamp(
+                                int(float(start))))
+        except:
+            raise Http404()
+    if end:
+        try:
+            qs.filter(date__lt=datetime.datetime.fromtimestamp(
+                                int(float(end))))
+        except:
+            raise Http404()
+    return HttpResponse(json.dumps(
+            [[e.mark, int(time.mktime(e.date.timetuple()))]
+                                for e in request.user.codemark_set.all()]
+        ))
 
 
 @login_required
@@ -42,5 +82,3 @@ def bill(request, user=None):
                   {
                       "transactions": transactions,
                   })
-
-# Create your views here.
