@@ -62,7 +62,7 @@ class CodeMarkForm(forms.ModelForm):
         model = models.CodeMark
         exclude=('user',)
 
-    def __init__(self, *args,**kwargs):
+    def __init__(self, *args, **kwargs):
         customer = kwargs.pop('user', None)
         super(CodeMarkForm, self).__init__(*args,**kwargs)
         self.instance.user = customer
