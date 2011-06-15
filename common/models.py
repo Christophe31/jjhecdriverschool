@@ -200,10 +200,12 @@ class Formation(Event):
 
 class Exam(Event):
     subscribers = models.ManyToManyField(User)
+    agence = models.ForeignKey(Place)
+    places = models.IntegerField("Nombre de places")
     LICENCES = (
         (0, "Code"),
         (1, "Permis Auto"),
         (2, "Permis Moto"),
     )
     license = models.IntegerField("Type", choices=LICENCES)
-    # trainer = models.ForeignKey(User)
+
