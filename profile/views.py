@@ -56,9 +56,13 @@ def ajax_get_notes_range(request, start=None, end=False):
         except:
             raise Http404()
     return HttpResponse(json.dumps(
-            [[e.mark, int(time.mktime(e.date.timetuple()))]
+            [[int(time.mktime(e.date.timetuple())), e.mark]
                                 for e in request.user.codemark_set.all()]
         ))
+
+
+def get_code_marks(request):
+    return render(request, "profile/get_code_marks.html",{})
 
 
 @login_required
