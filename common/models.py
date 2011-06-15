@@ -6,6 +6,30 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
+class Place(models.Model):
+    name = models.CharField(u"nom", max_length=64)
+    road = models.CharField(u"rue", max_length=64)
+    town = models.CharField(u"ville", max_length=64)
+    postal_code = models.CharField(u"code postal", max_length=64)
+    agence = models.ForeignKey('self', verbose_name=u"agence",
+                               blank=True, null=True)
+
+    TYPES = (
+        (0, "Agence"),
+        (1, "Circuit"),
+        (2, "Plateau"),
+        (3, "Centre de formation"),
+    )
+    type = models.IntegerField(u"type", choices=TYPES)
+
+    class Meta:
+        verbose_name = u"lieu"
+        ordering = ("id",)
+
+    def __unicode__(self):
+        return u"%s %s" % (dict(Place.TYPES)[self.type], self.name)
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     last_code_date = models.DateField(u"date du dernier code obtenu",
@@ -15,6 +39,8 @@ class UserProfile(models.Model):
     postal_code = models.IntegerField(null=True)
     town = models.CharField(max_length=256, null=True)
     phone_number = models.CharField(max_length=16, null=True)
+
+    place = models.ForeignKey(Place, null=True)
 
     class Meta:
         permissions = (
@@ -38,30 +64,6 @@ def create_user_profile(sender, instance, created, **kwargs):
         profile, created = UserProfile.objects.get_or_create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)
-
-
-class Place(models.Model):
-    name = models.CharField(u"nom", max_length=64)
-    road = models.CharField(u"rue", max_length=64)
-    town = models.CharField(u"ville", max_length=64)
-    postal_code = models.CharField(u"code postal", max_length=64)
-    agence = models.ForeignKey('self', verbose_name=u"agence",
-                               blank=True, null=True)
-
-    TYPES = (
-        (0, "Agence"),
-        (1, "Circuit"),
-        (2, "Plateau"),
-        (3, "Centre de formation"),
-    )
-    type = models.IntegerField(u"type", choices=TYPES)
-
-    class Meta:
-        verbose_name = u"lieu"
-        ordering = ("id",)
-
-    def __unicode__(self):
-        return u"%s %s" % (dict(Place.TYPES)[self.type], self.name)
 
 
 class Formula(models.Model):
@@ -139,15 +141,9 @@ class Vehicule(models.Model):
 
 
 class Event(models.Model):
+    title = models.CharField(u"Intitulé", max_length=35)
     start = models.DateTimeField(u"debut")
     end = models.DateTimeField(u"fin")
-
-    TYPES = (
-        (0, "Maintenance"),
-        (1, "Formation"),
-        (2, "Disponibilité"),
-    )
-    type = models.IntegerField("Type", choices=TYPES)
 
     class Meta:
         verbose_name = u"Evenement"
@@ -169,7 +165,8 @@ class Maintenance(Event):
 
 
 class CodeMark(models.Model):
-    mark = models.IntegerField("note", choices=((i, str(i)) for i in range(41)))
+    mark = models.IntegerField("note", choices=([(i, str(i))
+                                                 for i in range(41)][::-1]))
     date = models.DateTimeField("heure", auto_now=True)
     user = models.ForeignKey(User, verbose_name="utilisateur noté")
 
@@ -208,4 +205,3 @@ class Exam(Event):
         (2, "Permis Moto"),
     )
     license = models.IntegerField("Type", choices=LICENCES)
-
