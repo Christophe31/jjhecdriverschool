@@ -34,5 +34,6 @@ admin.site.register(mod.Event)
 admin.site.register(mod.Place)
 admin.site.register(mod.Formation)
 admin.site.register(mod.CodeMark)
+admin.site.register(mod.Exam)
 
 # vim:set et sts=4 ts=4 tw=80:
