@@ -3,7 +3,7 @@
 from django.db import models
 #from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+#from django.db.models.signals import post_save
 
 
 class Place(models.Model):
@@ -59,11 +59,11 @@ class UserProfile(models.Model):
         return "%s's profile" % self.user
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        profile, created = UserProfile.objects.get_or_create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
+#def create_user_profile(sender, instance, created, **kwargs):
+#    if created:
+#        profile, created = UserProfile.objects.get_or_create(user=instance)
+#
+#post_save.connect(create_user_profile, sender=User)
 
 
 class Formula(models.Model):
@@ -150,7 +150,7 @@ class Event(models.Model):
         ordering = ("id",)
 
     def __unicode__(self):
-        return "de %s à %s" % (self.start, self.end)
+        return u"de %s à %s" % (self.start, self.end)
 
 
 class Maintenance(Event):

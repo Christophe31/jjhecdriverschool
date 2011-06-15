@@ -23,7 +23,8 @@ class FormulaAdmin(admin.ModelAdmin):
     fields = ("name","price")
 
 class ExamAdmin(admin.ModelAdmin):
-    pass
+    exclude = ("subscribers",)
+
 
 
 # Reecrit l'interface des utilisateurs dans l'admin avec nos
