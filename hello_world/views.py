@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from common import models
 
 # for each model, add, change and delete permission are created,
 # use a "@permission_required('type_model')" imply registred user.
@@ -9,7 +10,8 @@ from django.template import RequestContext
 def greetings(request, name=None):
     return render_to_response("hello_world/greetings.html",
                               {
-                                  "name": name or "no_name"
+                                  "formulas": models.Formula.objects.all(),
+                                  "name": name or "no_name",
                               },
                               context_instance=RequestContext(request)
                              )
