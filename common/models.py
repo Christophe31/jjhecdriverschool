@@ -106,7 +106,11 @@ class Package(models.Model):
     formula = models.ForeignKey(Formula, verbose_name=u"formule")
 
     TYPES = (
-        (0, "type 1"),
+        (0, "Conduite"),
+        (1, "Conduite moto"),
+        (2, "Examin conduite Moto"),
+        (3, "Examin conduite Auto"),
+        (4, "Examin Code"),
     )
     type = models.IntegerField(u"type", choices=TYPES)
 
@@ -126,6 +130,7 @@ class Vehicule(models.Model):
     TYPES = (
         (0, "Voiture"),
         (1, "Moto"),
+        (1, "bicyclette"),
     )
     type = models.IntegerField(u"type", choices=TYPES)
 
@@ -155,6 +160,7 @@ class Event(models.Model):
 
 class Maintenance(Event):
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule")
+    comment = models.TextField(u"commentaire")
 
     class Meta:
         verbose_name = u"maintenance"
@@ -206,3 +212,11 @@ class Exam(Event):
         (2, "Permis Moto"),
     )
     license = models.IntegerField("Type", choices=LICENCES)
+
+    @property
+    def places_avail(self):
+        return self.places - self.subscribers.all().count()
+
+    def __unicode__(self):
+        return u"Exam du %s (%s places)" % (self.event.start, self.places_avail)
+
