@@ -65,6 +65,13 @@ def get_code_marks(request):
     return render(request, "profile/get_code_marks.html",{})
 
 
+def get_driving_marks(request):
+    formations = models.Formation.objects.filter(transaction__in=request.user.transactions_buyed.all())
+    return render(request, "profile/get_driving_marks.html",{
+        "formations": formations
+    })
+
+
 @login_required
 def logout(request):
     auth_logout(request)
