@@ -22,9 +22,9 @@ class FormulaAdmin(admin.ModelAdmin):
     inlines = (PackageInline,)
     fields = ("name","price")
 
+
 class ExamAdmin(admin.ModelAdmin):
     exclude = ("subscribers",)
-
 
 
 # Reecrit l'interface des utilisateurs dans l'admin avec nos
@@ -39,5 +39,3 @@ admin.site.register(mod.Place)
 admin.site.register(mod.Formation)
 admin.site.register(mod.CodeMark)
 admin.site.register(mod.Exam, ExamAdmin)
-
-# vim:set et sts=4 ts=4 tw=80:

@@ -12,22 +12,22 @@
 console.log("test");
 $(document).ready(function() {
 	$('#example').dataTable();
-	
+
 } );
 
 function executeAction(select, id){
-	switch (select) 
-	{ 
-		case 1: 
+	switch (select)
+	{
+		case 1:
 		window.location.replace("{% url crm.billing 9001 %}".replace('9001', id ));
-		break; 
-		case 2: 
+		break;
+		case 2:
 		window.location.replace("{% url crm.add_score 9001 %}".replace('9001', id ));
-		break; 
-		case 3: 
+		break;
+		case 3:
 		window.location.replace("{% url crm.register_formation 9001 %}".replace('9001', id ));
 		break;
-		case 4: 
+		case 4:
 		window.location.replace("{% url crm.register_exam 9001 %}".replace('9001', id ));
 		break;
 	}
@@ -50,8 +50,8 @@ function executeAction(select, id){
 			{% for customer in customers %}
 			<tr>
 				<td>{{ customer.username }}</td>
-				<td>{{ customer.firstname }}</td>
-				<td>{{ customer.lastname }}</td>
+				<td>{{ customer.first_name }}</td>
+				<td>{{ customer.last_name }}</td>
 				<td><select name="action" size="1" onchange="executeAction(this.selectedIndex, {{ customer.id }} )">
 						<option>-</option>
 						<option>Facturation</option>
