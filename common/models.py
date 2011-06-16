@@ -186,13 +186,14 @@ class Formation(Event):
                                    choices=((i, str(i)) for i in range(11)))
     trainer = models.ForeignKey(User, verbose_name="Formateur")
     transaction = models.ForeignKey(Transaction, verbose_name="Contrat lié")
+    comment = models.TextField(u"commentaire")
 
     class Meta:
         verbose_name = u"formation"
         ordering = ("id",)
 
     def __unicode__(self):
-        return "formation du %s a %s" % (self.event.start, self.agence.name)
+        return u"formation du %s a %s" % (self.event.start, self.agence.name)
 
 
 class Exam(Event):
