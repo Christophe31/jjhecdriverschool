@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+Driving marks
+{% endblock %}
+{% block extra_head %}
+{% endblock %}
+{% block content %}
+{% for formation in formations %}
+<p>{{formation}}</p>
+{% endfor %}
+{% endblock %}

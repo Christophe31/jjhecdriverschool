@@ -29,8 +29,6 @@ urlpatterns = patterns('',
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
-#    url(r'lbforum/',include('lbforum.urls')),
-#    url(r'^user/(?P<user_id>\d+)/$', lbprofile, name='user_profile'),
 )
 
 if settings.DEBUG:
