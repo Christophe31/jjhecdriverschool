@@ -31,15 +31,19 @@
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
 </head>
-  <body>
-<div class="tail-top">
-{% include "main_menu.html" %}
-    {% block content %}
-    {% endblock %}
+    <body>
+        <div class="tail-top">
+            {% include "main_menu.html" %}
+            
+            <section id="content">
+                {% block content %}
+                {% endblock %}
 
-	{% block sidebar %}
-	{% endblock %}
-{% include "main_footer.html" %}
-	</div>
+                {% block sidebar %}
+                {% endblock %}
+             </section>
+             
+            {% include "main_footer.html" %}
+        </div>
   </body>
 <html>

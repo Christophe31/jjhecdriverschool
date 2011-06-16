@@ -3,12 +3,11 @@ article, aside, audio, canvas, command, datalist, details, embed, figcaption, fi
 mark, rp, rt, ruby, summary, time {display:inline}
 /* Global properties */
 body {background:#fff;font-family:Arial, Helvetica, sans-serif;font-size:100%;line-height:1em;color:#464646}
-html {min-width:980px}
 html, body {height:100%}
 /* Global Structure = */
 .container {margin:0 auto;width:990px;font-size:.75em}
 /* Header */
-header .container {height:131px;overflow:hidden;position:relative}
+header .container {overflow:hidden}
 /* Sidebar */
 aside {background:url(/media/jjhec/images/aside-tail.gif) repeat-x left top #131313;min-width:980px;margin:0;padding0}
 /* Footer */
@@ -75,8 +74,8 @@ h1 {padding:17px 0 0 44px;font-size:36px;line-height:1.2em}
 h1 a {text-decoration:none}
 h2 {color:#464646;font-size:30px;line-height:1.2em;margin-bottom:15px;letter-spacing:-1px}
 h2.extra {padding:30px 0 0 43px}
-h3 {font-size:26px;line-height:1.2em;color:#fff;margin-bottom:30px}
-h4 {font-size:20px;line-height:1.2em;color:#fff;margin-bottom:27px;letter-spacing:-1px}
+h3 {font-size:23px;line-height:1.1em;color:#fff;margin-bottom:30px}
+h4 {font-size:20px;line-height:1.1em;color:#fff;margin-bottom:27px;letter-spacing:-1px}
 h4.extra {margin-bottom:12px}
 h5 {font-size:1em;line-height:1.667em;margin-bottom:10px}
 .link1 {display:inline-block;color:#fff;font-size:15px;line-height:1.2em;text-decoration:none;background:url(/media/jjhec/images/link1-right.png) no-repeat right top;padding-right:7px;letter-spacing:-1px;text-transform:uppercase}
@@ -100,7 +99,7 @@ h5 {font-size:1em;line-height:1.667em;margin-bottom:10px}
 .line-ver3 {background-image:url(/media/jjhec/images/line-ver1.gif);background-repeat:repeat-y;background-position:617px 0;width:100%}
 .line-ver4 {background-image:url(/media/jjhec/images/line-ver1.gif);background-repeat:repeat-y;background-position:777px 0;width:100%}
 /* boxes */
-.header-box {width:100%;background:url(/media/jjhec/images/header-box-tail.gif) repeat-x left top;position:relative;top:50px}
+.header-box {width:100%;background:url(/media/jjhec/images/header-box-tail.gif) repeat-x left top}
 .header-box .left {background:url(/media/jjhec/images/header-box-left.gif) no-repeat left top}
 .header-box .right {background:url(/media/jjhec/images/header-box-right.gif) no-repeat right top;height:81px}
 .box {background:url(/media/jjhec/images/box-tail.gif) repeat-x left top #fff;width:100%}
@@ -139,7 +138,7 @@ aside .line-ver1 {background-image:url(/media/jjhec/images/line-ver.gif);backgro
 aside .line-ver2 {background-image:url(/media/jjhec/images/line-ver.gif);background-repeat:repeat-y;background-position:354px 0;width:100%}
 aside .line-ver3 {background-image:url(/media/jjhec/images/line-ver.gif);background-repeat:repeat-y;background-position:547px 0;width:100%}
 aside .line-ver4 {background-image:url(/media/jjhec/images/line-ver.gif);background-repeat:repeat-y;background-position:742px 0;width:100%}
-#login-form fieldset {position:absolute;right:45px;top:15px}
+#login-form{float:right;padding-right:10px;height:20px}
 #login-form span.text {float:left;width:104px;height:23px;margin-left:5px;background:url(/media/jjhec/images/input-bg1.gif) no-repeat left top}
 #login-form input {border:none;background:none;padding:4px 10px;vertical-align:top;color:#9b9b9b;width:84px}
 *+ html #login-form input {padding-top:3px}
@@ -166,20 +165,29 @@ aside .line-ver4 {background-image:url(/media/jjhec/images/line-ver.gif);backgro
 #contacts-form textarea {width:549px;height:293px;padding:3px 3px;overflow:auto;margin-bottom:17px}
 #contacts-form a {margin-left:6px}
 /* slider */
-#faded {width:990px;height:350px;margin:7px 0;background:url(/media/jjhec/images/slider-bg.jpg) no-repeat 25px 5px}
+#faded {width:990px;height:100%;margin-left:5px;
+background: -moz-linear-gradient(left, rgba(113,169,3,1) 0%, rgba(120,169,23,0.8) 50%, rgba(126,168,42,0.8) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(113,169,3,1)), color-stop(50%,rgba(120,169,23,0.8)), color-stop(100%,rgba(126,168,42,0.8))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(113,169,3,1) 0%,rgba(120,169,23,0.8) 50%,rgba(126,168,42,0.8) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(113,169,3,1) 0%,rgba(120,169,23,0.8) 50%,rgba(126,168,42,0.8) 100%); /* Opera11.10+ */
+background: -ms-linear-gradient(left, rgba(113,169,3,1) 0%,rgba(120,169,23,0.8) 50%,rgba(126,168,42,0.8) 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#71a903', endColorstr='#cc7ea82a',GradientType=1 ); /* IE6-9 */
+background: linear-gradient(left, rgba(113,169,3,1) 0%,rgba(120,169,23,0.8) 50%,rgba(126,168,42,0.8) 100%); /* W3C */
+}
 #faded ul {list-style:none;padding:0;margin:0}
-#faded ul.pagination {list-style:none;padding:0;margin:0;width:246px;height:350px;background:url(/media/jjhec/images/pagination-bg.jpg) no-repeat left top}
-#faded ul.pagination li {padding:5px 0 0 5px;margin-bottom:-5px}
+#faded ul.pagination {list-style:none;padding:0;margin:0;width:246px}
+#faded ul.pagination li {padding:0;margin-bottom:-5px}
 #faded ul.pagination li a {width:270px;height:85px;background-repeat:no-repeat;background-position:left -85px;background-image:url(/media/jjhec/images/thumb-sprite.png);text-decoration:none;display:block;color:#464646}
 #faded ul.pagination li.current a {background-position:left top;color:#fff}
-#faded ul.pagination li a span {font-size:30px;line-height:1.2em;display:block;padding:14px 0 0 0}
+#faded ul.pagination li a span {font-size:30px;line-height:1.2em;display:block;padding:0}
 #faded ul.pagination li a small {display:inline-block;color:#428301;background-repeat:no-repeat;background-position:right -80px;background-image:url(/media/jjhec/images/arrows.gif);padding:0 17px 0 0}
 #faded ul.pagination li a span,
 #faded ul.pagination li a small {padding-left:40px}
 #faded ul.pagination li.current a small {color:#82b704;background-position:right 5px}
 #faded ul.slides li {position:relative;width:100%}
+#faded ul.slides li p{position:relative;width:100%;height:100%;font-size:2em;text-align:right;margin-right:900px}
 #faded ul.slides li img {position:absolute;top:71px;right:35px}
-#faded ul.slides li a {color:#fff;text-transform:uppercase;text-decoration:none;position:absolute;right:43px;top:217px;font-size:18px;line-height:1.2em;padding-left:8px;background:url(/media/jjhec/images/button-left.png) no-repeat left top;letter-spacing:-1px}
+#faded ul.slides li a {color:#fff;text-transform:uppercase;text-decoration:none;position:absolute;right:43px;top:17px;font-size:18px;line-height:1.2em;padding-left:8px;background:url(/media/jjhec/images/button-left.png) no-repeat left top;letter-spacing:-1px}
 #faded ul.slides li a:hover {color:#8ab805}
 #faded ul.slides li a span {display:block;padding-right:8px;background:url(/media/jjhec/images/button-right.png) no-repeat right top}
 #faded ul.slides li a span span {background:url(/media/jjhec/images/button-tail.png) repeat-x left top;padding:15px 14px 17px 14px}
