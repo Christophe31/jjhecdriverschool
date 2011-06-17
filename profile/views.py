@@ -73,7 +73,7 @@ def get_driving_marks(request):
 
 
 def get_appointments(request):
-    return render(request, "profile/get_appointments/html",
+    return render(request, "profile/get_appointments.html",
                  {})
 
 
