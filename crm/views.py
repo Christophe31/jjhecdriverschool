@@ -2,6 +2,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+import json
 from crm import forms
 from common import models
 
@@ -72,11 +74,25 @@ def register_formation(request, user_id=None):
                       'customer': customer,
                   })
 
+				  
 
 @permission_required('view_customers')
 def register_exam(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
+    form = forms.ExamForm()
     return render(request, "crm/register_exam.html",
                   {
+				      "form": form,
                       'customer': customer,
                   })
+
+def ajax_get_exam(request):
+    return HttpResponse(json.dumps(
+	    [[exam.id, unicode(exam)] for exam in
+			models.Exam.objects
+			.filter(license__exact=request.GET['type'])
+			.filter(agence__exact=request.user.get_profile().place)
+			#if exam.place_avail]
+        ]
+	))
+				  
