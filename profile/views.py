@@ -80,8 +80,8 @@ def get_appointments(request):
 def ajax_get_appointments(request):
     return HttpResponse(json.dumps([
             {"id":event.id,
-             "start":unicode(event.start),
-             "end":unicode(event.end),
+             "start":event.start.isoformat(),
+             "end":event.end.isoformat(),
              "title": event.title
             }
             for event in models.Event.objects.all()
