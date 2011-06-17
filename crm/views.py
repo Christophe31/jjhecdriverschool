@@ -88,6 +88,6 @@ def register_exam(request, user_id=None):
 
 def ajax_get_exam(request):
     return HttpResponse(json.dumps(
-	    list(models.Exam.objects.filter(license__exact=request.GET['truc']).filter(agence__exact=request.user.get_profile().place))
+	    list(models.Exam.objects.filter(license__exact=request.GET['type']).filter(agence__exact=request.user.get_profile().place))
 	))
 				  
