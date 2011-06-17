@@ -71,3 +71,9 @@ class CodeMarkForm(forms.ModelForm):
 class TransactionSelling(forms.ModelForm):
     class Meta:
         model = models.Transaction
+
+
+class ExamForm(forms.Form):	
+    type = forms.ChoiceField(choices=models.Exam.LICENCES)
+    exam = forms.ChoiceField()
+	

@@ -4,7 +4,17 @@
 register_exam
 {% endblock %}
 {% block extra_head %}
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script langage="javascript">
+$(function(){
+	$("#id_type").change(function(){
+		var options = '';
+		options += '<option value="1">test</option>';
+		jQuery("#id_exam").html(options);
+	});
+
+});
+</script>
 {% endblock %}
 {% block content %}
 <form method='post' class='uniForm'>
