@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.auth import models as auth_models
-from common import models
 
 
 class UserForm(forms.ModelForm):

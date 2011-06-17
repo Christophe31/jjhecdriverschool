@@ -33,7 +33,7 @@ class Place(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     last_code_date = models.DateField(u"date du dernier code obtenu",
-                                      null=True)
+                                      blank=True, null=True)
     birth_date = models.DateField(u"date de naissance", null=True)
     adress = models.CharField(max_length=512, null=True)
     postal_code = models.IntegerField(null=True)
@@ -218,5 +218,4 @@ class Exam(Event):
         return self.places - self.subscribers.all().count()
 
     def __unicode__(self):
-        return u"Exam du %s (%s places)" % (self.event.start, self.places_avail)
-
+        return u"Exam du %s (%s places)" % (self.start, self.places_avail)
