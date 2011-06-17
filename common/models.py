@@ -199,7 +199,7 @@ class Formation(Event):
         ordering = ("id",)
 
     def __unicode__(self):
-        return u"formation du %s a %s" % (self.event.start, self.agence.name)
+        return u"formation du %s a %s" % (self.start, self.agence.name)
 
 
 class Exam(Event):
