@@ -40,6 +40,7 @@ Calandar
       firstDayOfWeek : 1,
       businessHours :{start: 8, end: 18, limitDisplay: true },
       daysToShow : 5,
+      use24Hour: true,
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
       },
@@ -160,9 +161,7 @@ Calandar
       noEvents : function() {
 
       },
-      data : function(start, end, callback) {
-         callback(getEventData());
-      }
+      data : "/profile/ajax_get_appointments/"
    });
 
    function resetForm($dialogContent) {
@@ -171,6 +170,7 @@ Calandar
    }
 
    function getEventData() {
+
       var year = new Date().getFullYear();
       var month = new Date().getMonth();
       var day = new Date().getDate();
@@ -272,25 +272,6 @@ Calandar
          $endTimeField.find("option:eq(1)").attr("selected", "selected");
       }
 
-   });
-
-
-   var $about = $("#about");
-
-   $("#about_button").click(function() {
-      $about.dialog({
-         title: "About this calendar demo",
-         width: 600,
-         close: function() {
-            $about.dialog("destroy");
-            $about.hide();
-         },
-         buttons: {
-            close : function() {
-               $about.dialog("close");
-            }
-         }
-      }).show();
    });
 
 /*
