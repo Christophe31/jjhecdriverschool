@@ -6,6 +6,14 @@
 <script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jcarousel.min.js"></script>
 {% endblock %}
 <div class="container">
+
+        {% for formule in formulas %}
+            {{formule.nom}}{{formule.prix}}
+            <hr />
+            {% for package in formule.package_set%}
+            {% endfor%}
+        {% endfor %}
+
     <div id="faded">
         <ul class="slides">
             <li><img src="{{MEDIA_URL}}jjhec/images/slide-title1.gif"><a href="#"><span><span>Learn More</span></span></a></li>
@@ -24,6 +32,7 @@
     </div>
     <div class="inside">
         <ul class="wrapper jcarousel-skin-tango" id="mycarousel">
+
             <li class="box jcarousel-item-1">
                 <div class="border-right">
                     <div class="border-bot">
