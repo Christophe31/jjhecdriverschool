@@ -100,7 +100,6 @@ def bill(request, user=None):
         user = request.user
     else:
         pass
-        # request.user.has_perm("")
     transactions = (models.Transaction.objects
                        .filter(customer=user.id)
                        .select_related('customer', 'seller', 'formula'))
@@ -108,11 +107,4 @@ def bill(request, user=None):
                   "profile/bill.html",
                   {
                       "transactions": transactions,
-                  })
-
-def appreciation(request):
-    return render(request,
-                  "profile/appreciations.html",
-                  {
-                      
                   })
