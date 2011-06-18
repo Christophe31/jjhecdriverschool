@@ -3,6 +3,6 @@
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('trainer.views',
-    url('^$','mark_client', name='trainer.index'))
-
-# vim:set et sts=4 ts=4 tw=80:
+    url('^$','mark_client', name='trainer.index'),
+    url('^Booom\!$','declare_incident',name='trainer.declare_incident'),
+    )
