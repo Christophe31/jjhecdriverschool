@@ -79,10 +79,12 @@ def register_formation(request, user_id=None):
 @permission_required('view_customers')
 def register_exam(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
+    formations = models.Formation.objects.filter(transaction__in=customer.transactions_buyed.all())
     form = forms.ExamForm()
     return render(request, "crm/register_exam.html",
                   {
 				      "form": form,
+					  'formations':formations,
                       'customer': customer,
                   })
 
