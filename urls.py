@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
-import hello_world.urls
+import home.urls
 import crm.urls
 import profile.urls
 import trainer.urls
@@ -15,11 +15,10 @@ jqmobile.autodiscover()
 
 urlpatterns = patterns('',
     # index page
-    url(r'^$', include(hello_world.urls)),
+    url(r'^$', include(home.urls)),
     # favicon
     url(r'^favicon\.ico$','django.views.generic.simple.redirect_to', {'url': settings.MEDIA_URL+'favicon.ico'}),
     # local apps routing
-    url(r'^hello/', include(hello_world.urls)),
     url(r'^crm/', include(crm.urls)),
     url(r'^profile/', include(profile.urls)),
     url(r'^trainer/', include(trainer.urls)),
