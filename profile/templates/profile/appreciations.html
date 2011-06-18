@@ -4,9 +4,41 @@
 appreciations
 {% endblock %}
 {% block extra_head %}
+<link href="{{MEDIA_URL}}jjhec/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
+<link href="{{MEDIA_URL}}jjhec/css/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript" language="javascript">
+$(function() {
+	$('#example').dataTable();
+} );
+</script>
 {% endblock %}
 {% block content %}
-	{% for formation in formations %}
-		formation.aptitude
-	{% endfor %}
+	<div id="tabcenter">
+	<table id="example" class>
+		<thead>
+			<tr>
+				<td width="100px">Date</td>
+				<td>Formateur</td>
+				<td>Formation</td>
+				<td>Note</td>
+				<td>Commentaire</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for formation in formations %}
+			<tr>
+				<td>{{ formation.start }}</td>
+				<td>{{ formation.trainer }}</td>
+				<td>{{ formation.package }}</td>
+				<td>{{ formation.aptitude }}</td>
+				<td>{{ formation.comment }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% endblock %}

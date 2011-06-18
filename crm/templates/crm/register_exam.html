@@ -7,8 +7,9 @@ register_exam
 <script langage="javascript">
 $(function(){
 	$("#id_type").change(function(){
-		$("#id_exam").innerHTML=null;
-
+		
+		$("#id_exam").empty();
+		
 		$.get('{% url crm.ajax_get_exam %}',
 				{ type: $("#id_type").val() },
 				function(data){

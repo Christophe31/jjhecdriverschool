@@ -1,18 +1,17 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404
+from trainer import forms
 
 
-# for each model, add, change and delete permission are created,
-# use a "@permission_required('type_model')" imply registred user.
+def mark_client(request, id=None):
+    form = forms.MarkCustommerFrom(instance=get_object_or_404(pk=id))
+    return render(
+            request,
+            "trainer/mark_client.html",
+            {
+                "form": form,
+            }
+        )
 
-# from django.contrib.auth.decorators import permission_required
-# @permission_required('add_exemple')
-def greetings(request, name=None):
-    return render_to_response("trainer/greetings.html",
-                              {
-                                  "name": name or "no_name"
-                              },
-                              context_instance=RequestContext(request)
-                             )
 
-# Create your views here.
+def declare_incident(request):
+    return render(request, "")
