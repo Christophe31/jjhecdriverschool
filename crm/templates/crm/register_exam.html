@@ -1,0 +1,46 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+register_exam
+{% endblock %}
+{% block extra_head %}
+<script langage="javascript">
+$(function(){
+	$("#id_type").change(function(){
+		$("#id_exam").innerHTML=null;
+
+		$.get('{% url crm.ajax_get_exam %}',
+				{ type: $("#id_type").val() },
+				function(data){
+
+					$.each(data,function(i,elem){
+						console.log(elem[1]);
+						$("#id_exam").append('<option value="'+elem[0]+'">'+elem[1]+'</option>');
+
+					});
+					/*var options = '';
+					for (var i=0;i<data.lenght;i++){
+						//options += '<option value="'+data[i][0]+'">'+data[i][1]+'</option>';	
+						console.log(data[0])
+						$("#id_exam").add('<option value="'+data[i][0]+'">'+data[i][1]+'</option>');
+					}*/
+
+					//$("#id_exam").html(options);
+				},
+				'json'
+		);
+	});
+});
+</script>
+{% endblock %}
+{% block content %}
+<form method='post' class='uniForm'>
+  {% csrf_token %}
+  <div>
+      {{ form|as_uni_form }}
+    <div class="buttonHolder">
+      <button type="submit" class="primaryAction">register_exam</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
