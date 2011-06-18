@@ -19,14 +19,6 @@ $(function(){
 						$("#id_exam").append('<option value="'+elem[0]+'">'+elem[1]+'</option>');
 
 					});
-					/*var options = '';
-					for (var i=0;i<data.lenght;i++){
-						//options += '<option value="'+data[i][0]+'">'+data[i][1]+'</option>';	
-						console.log(data[0])
-						$("#id_exam").add('<option value="'+data[i][0]+'">'+data[i][1]+'</option>');
-					}*/
-
-					//$("#id_exam").html(options);
 				},
 				'json'
 		);
@@ -42,6 +34,29 @@ $(function(){
     <div class="buttonHolder">
       <button type="submit" class="primaryAction">register_exam</button>
     </div>
+	<div id="tabcenter">
+	<table id="example" class>
+		<thead>
+			<tr>
+				<td width="100px">Date</td>
+				<td>Formateur</td>
+				<td>Formation</td>
+				<td>Note</td>
+				<td>Commentaire</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for formation in formations %}
+			<tr>
+				<td>{{ formation.start }}</td>
+				<td>{{ formation.trainer }}</td>
+				<td>{{ formation.package }}</td>
+				<td>{{ formation.aptitude }}</td>
+				<td>{{ formation.comment }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
   </div>
 </form>
 {% endblock %}
