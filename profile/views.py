@@ -109,3 +109,10 @@ def bill(request, user=None):
                   {
                       "transactions": transactions,
                   })
+
+def appreciation(request):
+    return render(request,
+                  "profile/appreciations.html",
+                  {
+                      
+                  })
