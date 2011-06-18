@@ -1,17 +1,14 @@
 ﻿{% extends 'base.html' %}
 {% block title %}Liste des clients{% endblock %}
-
 {% block extra_head %}
-<link href="{{MEDIA_URL}}jjhec/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
-<link href="{{MEDIA_URL}}jjhec/css/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
-
 <script type="text/javascript" language="javascript">
-console.log("test");
 $(document).ready(function() {
-	$('#example').dataTable();
+	$('#example').dataTable({
+					"bJQueryUI": true,
+                    "bAutoWidth": true,
+					"sPaginationType": "full_numbers"
+				});
 
 } );
 
@@ -36,15 +33,14 @@ function executeAction(select, id){
 {% endblock %}
 
 {% block content %}
-<div align="center"><a href="{% url crm.register_user %}" class="button_link">Ajouter un Client</a></div>
-<div id="tabcenter">
-	<table id="example">
+	<table id="example" width="990px">
+
 		<thead>
 			<tr>
-				<td width='100px'>UserName</td>
-				<td width='100px'>Nom</td>
-				<td width='100px'>Prenom</td>
-				<td width='100px'>Action</td>
+				<td>UserName</td>
+				<td>Nom</td>
+				<td>Prenom</td>
+				<td>Action</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -65,5 +61,6 @@ function executeAction(select, id){
 			{% endfor %}
 		</tbody>
 	</table>
-</div>
+    
+    <div class="span_link"><a href="{% url crm.register_user %}" class="button_link">Ajouter un Client</a></div>
 {% endblock %}

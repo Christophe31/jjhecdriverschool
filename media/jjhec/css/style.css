@@ -191,7 +191,7 @@ background: linear-gradient(left, rgba(113,169,3,1) 0%,rgba(120,169,23,0.8) 50%,
 #faded ul.slides li a:hover {color:#8ab805}
 #faded ul.slides li a span {display:block;padding-right:8px;background:url(/media/jjhec/images/button-right.png) no-repeat right top}
 #faded ul.slides li a span span {background:url(/media/jjhec/images/button-tail.png) repeat-x left top;padding:15px 14px 17px 14px}
-.button_link{background:url(/media/jjhec/images/button-tail.png) repeat-x left top;padding:15px 14px 17px 14px}
+.button_link{background:url(/media/jjhec/images/button-tail.png) repeat-x left top;padding:15px 14px 17px 14px;margin: 20px 0}
 a {outline:0;border:0}
 /* custom forms */
 /* Checkboxes */
