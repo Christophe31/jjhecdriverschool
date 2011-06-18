@@ -8,7 +8,7 @@ from common import models
 # from django.contrib.auth.decorators import permission_required
 # @permission_required('add_exemple')
 def greetings(request, name=None):
-    return render_to_response("hello_world/greetings.html",
+    return render_to_response("home/greetings.html",
                               {
                                   "formulas": models.Formula.objects.all(),
                                   "name": name or "no_name",

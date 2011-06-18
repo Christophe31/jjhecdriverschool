@@ -141,7 +141,7 @@ INSTALLED_APPS = (
     'jqmobile',
 
     # local apps
-    'jjhecdriverschool.hello_world',
+    'jjhecdriverschool.home',
     'jjhecdriverschool.crm',
     'jjhecdriverschool.trainer',
     'jjhecdriverschool.profile',
