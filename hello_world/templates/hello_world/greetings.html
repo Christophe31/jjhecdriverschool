@@ -8,10 +8,10 @@
 <div class="container">
 
         {% for formule in formulas %}
-            {{formule.nom}}{{formule.prix}}
+            {{ formule.nom }}{{ formule.prix }}
             <hr />
-            {% for package in formule.package_set%}
-            {% endfor%}
+            {% for package in formule.package_set.all %}
+            {% endfor %}
         {% endfor %}
 
     <div id="faded">
