@@ -18,7 +18,14 @@ def view_customers(request, other=None):
 
 @permission_required('view_customers')
 def register_user(request):
-    form = forms.UserForm()
+    if request.POST:
+        form = forms.UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('crm.index')
+    else:
+        form = forms.UserForm()
+
     return render(request, "crm/register_user.html",
                   {
                       'form':form,
@@ -74,7 +81,7 @@ def register_formation(request, user_id=None):
                       'customer': customer,
                   })
 
-				  
+
 
 @permission_required('view_customers')
 def register_exam(request, user_id=None):
@@ -97,4 +104,4 @@ def ajax_get_exam(request):
 			#if exam.place_avail]
         ]
 	))
-				  
+
