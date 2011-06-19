@@ -15,7 +15,7 @@ def mark_client(request, id=None):
 
 
 def view_vehicles(request):
-    qs = models.Vehicule.objects.filter(agence__exact=request.user.get_profile().agence)
+    qs = models.Vehicule.objects.filter(agence__exact=request.user.get_profile().place)
     return render(request,
                   "trainer/view_vehicles.html",
                   {
