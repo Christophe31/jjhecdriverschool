@@ -1,0 +1,10 @@
+.gauche {text-align:left;}
+.centre {text-align:center;}
+.droite {text-align:right;}
+
+table .entete  {background-color:#bbd; }
+
+table.facture tr.entete {border-bottom: #007 solid 1px; }
+table.facture tbody.description td {padding-top:0.4em;font-size:0.94em;}
+table.facture tr.totalavanttaxes {border-top: #007 solid 1px;}
+table.facture tr.totalaprestaxes {border-top: #007 solid 1px; background:#ccf;}

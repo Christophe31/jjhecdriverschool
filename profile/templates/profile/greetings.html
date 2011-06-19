@@ -1,0 +1,21 @@
+﻿{% extends 'base.html' %}
+{% block title %}Hello {{name}}!{% endblock %}
+{% block content %}
+   <div id="faded">
+        <ul class="slides">
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title1.gif"><a href="{% url profile.get_code_marks %}"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title2.gif"><a href="{% url profile.get_driving_marks %}"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title3.gif"><a href="{% url profile.edit_profile %}"><span><span>Learn More</span></span></a></li>
+			<li><img src="{{MEDIA_URL}}jjhec/images/slide-title4.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+			<li><img src="{{MEDIA_URL}}jjhec/images/slide-title5.gif"><a href="{% url profile.bill %}"><span><span>Learn More</span></span></a></li>
+        </ul>
+        <ul class="pagination">
+            <li><a href="{% url profile.get_code_marks %}" rel="0"><span>Notes</span></a></li>
+            <li><a href="{% url profile.get_driving_marks %}" rel="1"><span>Commentaires</a></li>
+            <li><a href="{% url profile.edit_profile %}" rel="2"><span>Mes informations</span></a></li>
+			<li><a href="#" rel="2"><span>Mon planning</span></a></li>
+			<li><a href="{% url profile.bill %}" rel="2"><span>Mes contrats</span></a></li>
+
+        </ul>
+    </div>
+{% endblock %}

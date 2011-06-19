@@ -1,0 +1,16 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+Billing
+{% endblock %}
+{% block content %}
+<form method='post' class='uniForm'>
+  {% csrf_token %}
+  <div>
+      {{ form|as_uni_form }}
+    <div class="buttonHolder">
+      <button type="submit" class="primaryAction">Billing</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
