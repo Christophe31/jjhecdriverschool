@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -41,17 +41,20 @@ def login(request):
 
 
 @csrf_exempt
-def ajax_get_notes_range(request, start=None, end=False):
-    qs = request.user.codemark_set.all()
+def ajax_get_notes_range(request, start=None, end=None, user=None):
+    if user and request.user.has_perm("view_customers"):
+        qs = get_object_or_404(pk=user).codemark_set.all()
+    else:
+        qs = request.user.codemark_set.all()
     if start:
         try:
-            qs.filter(date__gt=datetime.datetime.fromtimestamp(
+            qs = qs.filter(date__gt=datetime.datetime.fromtimestamp(
                                 int(float(start))))
         except:
             raise Http404()
     if end:
         try:
-            qs.filter(date__lt=datetime.datetime.fromtimestamp(
+            qs = qs.filter(date__lt=datetime.datetime.fromtimestamp(
                                 int(float(end))))
         except:
             raise Http404()

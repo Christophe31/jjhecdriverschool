@@ -26,7 +26,8 @@ class UserForm(forms.Form):
                     last_name=cd["last_name"],
                     email=cd["email"],
             )
-        usr.set_password()
+        usr.set_password(cd["password"])
+        usr.save()
         prof = models.UserProfile(
                     user=usr,
                     birth_date=cd["birth_date"],
@@ -73,7 +74,7 @@ class TransactionSelling(forms.ModelForm):
         model = models.Transaction
 
 
-class ExamForm(forms.Form):	
+class ExamForm(forms.Form):
     type = forms.ChoiceField(choices=models.Exam.LICENCES,help_text="Le type d'examen")
     exam = forms.ChoiceField(help_text="Choix de l'examen pour l'inscription")
-	
+
