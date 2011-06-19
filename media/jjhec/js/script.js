@@ -15,6 +15,7 @@ $(function(){
     }
     if ((e = $('.dateinput')).length != 0){
         e.datepicker();
+        e.datepicker( "option", "dateFormat", 'dd/mm/yy' );
     }
     if ((e = $('.datetimeinput')).length != 0){
         e.datetimepicker();
