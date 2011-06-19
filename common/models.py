@@ -114,6 +114,10 @@ class Package(models.Model):
     )
     type = models.IntegerField(u"type", choices=TYPES)
 
+    @property
+    def type_text(self):
+        return dict(self.TYPES)[self.type]
+
     class Meta:
         verbose_name = u"forfait"
         ordering = ("id",)
