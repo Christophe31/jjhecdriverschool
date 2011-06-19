@@ -1,0 +1,45 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+View marks.
+{% endblock %}
+{% block extra_head %}
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/jquery.jqplot.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.bezierCurveRenderer.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+  <script type="text/javascript" language="javascript">
+    $(function(){
+	  
+      $.jqplot.config.enablePlugins = true;
+      $.ajax({
+          url: '{% url profile.ajax_get_notes_range %}',
+          dataType: 'json',
+          success: function(data){
+				var serie = [[1, 35], [2, 32], [3, 37], [4, 29], [5, 36]];
+				$.jqplot('graph',  [data],
+				{ title:'Exponential Line',
+				  axes:{yaxis:{min:0, max:40}},
+				  seriesDefaults:{renderer:$.jqplot.bezierCurveRenderer}
+				  
+				});
+                  /*$.jqplot("graph", data,
+				  
+                    { 
+						axes: {
+							 xaxis: {
+							        renderer: $.jqplot.DateAxisRenderer
+									
+								  }
+							},
+                      seriesDefaults: {renderer:$.jqplot.BezierCurveRenderer},
+					  series:[{renderer:$.jqplot.BarRenderer}]}
+                    }
+                  )*/
+          }
+      });
+    })
+  </script>
+{% endblock %}
+{% block content %}
+<div id="graph" class='plot' style="margin-top:20px; margin-left:20px; width:400px; height:300px;"></div>
+{% endblock %}
