@@ -130,9 +130,13 @@ class Vehicule(models.Model):
     TYPES = (
         (0, "Voiture"),
         (1, "Moto"),
-        (1, "bicyclette"),
+        (2, "bicyclette"),
     )
     type = models.IntegerField(u"type", choices=TYPES)
+
+    @property
+    def type_text(self):
+        return dict(self.TYPES)[self.type]
 
     class Meta:
         verbose_name = u"vehicule"
