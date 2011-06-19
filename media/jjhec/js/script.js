@@ -1,14 +1,14 @@
 $(function(){
     $("a.new_window").attr("target", "_blank");
     var e = $("#faded");
-    if (e.length != 0){
+    /*if (e.length != 0){
         e.faded({
             speed: 500,
             crossfade: true,
             autoplay: 10000,
             autopagination:false
         });
-     }   
+     }   */
 
     if ((e = $('#domain-form')).length != 0){
         e.jqTransform({imgPath:'jqtransformplugin/img/'});
