@@ -78,3 +78,8 @@ class ExamForm(forms.Form):
     type = forms.ChoiceField(choices=models.Exam.LICENCES,help_text="Le type d'examen")
     exam = forms.ChoiceField(help_text="Choix de l'examen pour l'inscription")
 
+
+class DrivingLessonForm(forms.ModelForm):
+    class Meta:
+        model = models.Formation
+        exclude = ('customer', 'comment', 'agence')
