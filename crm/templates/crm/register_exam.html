@@ -4,7 +4,17 @@
 register_exam
 {% endblock %}
 {% block extra_head %}
-<script langage="javascript">
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+	$('#example').dataTable({
+					"bJQueryUI": true,
+                    "bAutoWidth": true,
+					"sPaginationType": "full_numbers"
+				});
+
+} );
+
 $(function(){
 	$("#id_type").change(function(){
 		
@@ -38,9 +48,7 @@ $(function(){
 	<table id="example" class>
 		<thead>
 			<tr>
-				<td width="100px">Date</td>
-				<td>Formateur</td>
-				<td>Formation</td>
+				<td>Date</td>
 				<td>Note</td>
 				<td>Commentaire</td>
 			</tr>
@@ -49,8 +57,6 @@ $(function(){
 			{% for formation in formations %}
 			<tr>
 				<td>{{ formation.start }}</td>
-				<td>{{ formation.trainer }}</td>
-				<td>{{ formation.package }}</td>
 				<td>{{ formation.aptitude }}</td>
 				<td>{{ formation.comment }}</td>
 			</tr>
