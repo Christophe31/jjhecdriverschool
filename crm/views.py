@@ -76,9 +76,11 @@ def add_score(request, user_id=None):
 @permission_required('view_customers')
 def register_formation(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
+    form = forms.DrivingLessonForm()
     return render(request, "crm/register_formation.html",
                   {
                       'customer': customer,
+                      'form': form,
                   })
 
 
