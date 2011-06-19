@@ -1,0 +1,85 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+register_exam
+{% endblock %}
+{% block extra_head %}
+<script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/jquery.jqplot.js"></script>
+<script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.bezierCurveRenderer.js"></script>
+<script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript">
+$(function(){ 
+      $.jqplot.config.enablePlugins = true;
+      $.ajax({
+          url: '{% url profile.ajax_get_notes_range %}',
+          dataType: 'json',
+          success: function(data){
+				var serie = [[1, 35], [2, 32], [3, 37], [4, 29], [5, 36]];
+				$.jqplot('graph',  [data],
+				{ title:'Exponential Line',
+				  axes:{yaxis:{min:0, max:40}},
+				  seriesDefaults:{renderer:$.jqplot.bezierCurveRenderer}
+				  
+				});
+          }
+      });
+$('#example').dataTable({
+					"bJQueryUI": true,
+                    "bAutoWidth": true,
+					"sPaginationType": "full_numbers"
+				});
+
+} );
+
+$(function(){
+	$("#id_type").change(function(){
+		
+		$("#id_exam").empty();
+		
+		$.get('{% url crm.ajax_get_exam %}',
+				{ type: $("#id_type").val() },
+				function(data){
+
+					$.each(data,function(i,elem){
+						console.log(elem[1]);
+						$("#id_exam").append('<option value="'+elem[0]+'">'+elem[1]+'</option>');
+
+					});
+				},
+				'json'
+		);
+	});
+});
+</script>
+{% endblock %}
+{% block content %}
+<form method='post' class='uniForm'>
+  {% csrf_token %}
+  <div>
+      {{ form|as_uni_form }}
+    <div class="buttonHolder">
+      <button type="submit" class="primaryAction">register_exam</button>
+    </div>
+	<div id="tabcenter">
+	<table id="example" class>
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Note</td>
+				<td>Commentaire</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for formation in formations %}
+			<tr>
+				<td>{{ formation.start }}</td>
+				<td>{{ formation.aptitude }}</td>
+				<td>{{ formation.comment }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+  </div>
+</form>
+{% endblock %}

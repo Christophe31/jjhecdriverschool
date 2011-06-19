@@ -1,0 +1,37 @@
+﻿{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% block title %}
+View marks.
+{% endblock %}
+{% block extra_head %}
+<<<<<<< local
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jquery.gchart.pack.js"></script>
+=======
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/jquery.jqplot.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.BezierCurveRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+>>>>>>> other
+  <script type="text/javascript" language="javascript">
+    $(function(){
+
+      $.jqplot.config.enablePlugins = true;
+      $.ajax({
+          url: '{% url profile.ajax_get_notes_range %}',
+          dataType: 'json',
+          success: function(data){
+            $.jqplot('graph',  [data],
+              { title:'Notes au code',
+                axes:{yaxis:{min:0, max:40},xaxis:{renderer:$.jqplot.DateAxisRenderer, tickOptions:{show: false}}},
+                seriesDefaults:{
+                  renderer:$.jqplot.bezierCurveRenderer,
+                  color: '#6E9903'
+                }
+              });
+          }
+      });
+    })
+  </script>
+{% endblock %}
+{% block content %}
+<div id="graph" class='plot'></div>
+{% endblock %}

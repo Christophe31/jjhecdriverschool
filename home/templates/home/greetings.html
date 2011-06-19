@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% block title %}Hello {{name}}!{% endblock %}
+{% block content %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/jcarousel.css" type="text/css" media="all">
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jcarousel.min.js"></script>
+{% endblock %}
+<div class="container">
+
+        {% for formule in formulas %}
+            {{ formule.nom }}{{ formule.prix }}
+            <hr />
+            {% for package in formule.package_set.all %}
+            {% endfor %}
+        {% endfor %}
+
+    <div id="faded">
+        <ul class="slides">
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title1.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title4.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title3.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title2.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+            <li><img src="{{MEDIA_URL}}jjhec/images/slide-title2.gif"><a href="#"><span><span>Learn More</span></span></a></li>
+        </ul>
+        <ul class="pagination">
+            <li><a href="#" rel="0"><span>Offre</span><small>Get more information</small></a></li>
+            <li><a href="#" rel="1"><span>Blog</span><small>Get more information</small></a></li>
+            <li><a href="#" rel="2"><span>Forum</span><small>Get more information</small></a></li>
+            <li><a href="#" rel="3"><span>Formule</span><small>Get more information</small></a></li>
+            <li><a href="#" rel="4"><span>Agance</span><small>Get more information</small></a></li>
+        </ul>
+    </div>
+    <div class="inside">
+        <ul class="wrapper jcarousel-skin-tango" id="mycarousel">
+
+            <li class="box jcarousel-item-1">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Basic Plan</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Basic Plan</li>
+                                                    <li><span>Monthly transfer</span>3000 Gb</li>
+                                                    <li><span>FTP accounts</span>25</li>
+                                                    <li><span>Email boxes</span>1000</li>
+                                                    <li><span>Free domains</span>1</li>
+                                                </ul>
+                                                <span class="price">$ 9.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-2">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Economy Plan</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Economy Plan</li>
+                                                    <li><span>Monthly transfer</span>5000 Gb</li>
+                                                    <li><span>FTP accounts</span>50</li>
+                                                    <li><span>Email boxes</span>2500</li>
+                                                    <li><span>Free domains</span>2</li>
+                                                </ul>
+                                                <span class="price">$ 14.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-3">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Deluxe Plan</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Deluxe Plan</li>
+                                                    <li><span>Monthly transfer</span>8000 Gb</li>
+                                                    <li><span>FTP accounts</span>70</li>
+                                                    <li><span>Email boxes</span>3000</li>
+                                                    <li><span>Free domains</span>3</li>
+                                                </ul>
+                                                <span class="price">$ 19.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-4">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Unlimited Plan</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Unlimited Plan</li>
+                                                    <li><span>Monthly transfer</span>Unlimited</li>
+                                                    <li><span>FTP accounts</span>Unlimited</li>
+                                                    <li><span>Email boxes</span>Unlimited</li>
+                                                    <li><span>Free domains</span>Unlimited</li>
+                                                </ul>
+                                                <span class="price">$ 24.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-5">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Unlimited Plan 2</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Unlimited Plan 2</li>
+                                                    <li><span>Monthly transfer</span>Unlimited</li>
+                                                    <li><span>FTP accounts</span>Unlimited</li>
+                                                    <li><span>Email boxes</span>Unlimited</li>
+                                                    <li><span>Free domains</span>Unlimited</li>
+                                                </ul>
+                                                <span class="price">$ 24.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-6">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Unlimited Plan 3</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Unlimited Plan 3</li>
+                                                    <li><span>Monthly transfer</span>Unlimited</li>
+                                                    <li><span>FTP accounts</span>Unlimited</li>
+                                                    <li><span>Email boxes</span>Unlimited</li>
+                                                    <li><span>Free domains</span>Unlimited</li>
+                                                </ul>
+                                                <span class="price">$ 24.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box jcarousel-item-6">
+                <div class="border-right">
+                    <div class="border-bot">
+                        <div class="border-left">
+                            <div class="left-top-corner">
+                                <div class="right-top-corner">
+                                    <div class="right-bot-corner">
+                                        <div class="left-bot-corner">
+                                            <div class="inner">
+                                                <h3>Unlimited Plan 4</h3>
+                                                <ul class="info-list">
+                                                    <li><span>Disk space</span>Unlimited Plan 4</li>
+                                                    <li><span>Monthly transfer</span>Unlimited</li>
+                                                    <li><span>FTP accounts</span>Unlimited</li>
+                                                    <li><span>Email boxes</span>Unlimited</li>
+                                                    <li><span>Free domains</span>Unlimited</li>
+                                                </ul>
+                                                <span class="price">$ 24.95 p/m</span>
+                                                <div class="aligncenter"><a href="#" class="link1"><span><span>Learn More</span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

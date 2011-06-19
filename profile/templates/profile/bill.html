@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/print.css" type="text/css" media="all">
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/bill.css" type="text/css" media="all">
+{% endblock %}
+{% block title %}
+Bills
+{% endblock %}
+{% block content %}
+
+
+<h2>Bill</h2>
+
+
+
+<table class="facture" style="width:100%">
+
+  <col align="left">
+  <col align="center">
+  <col align="right">
+  <thead>
+    <tr class="entete">
+      <td class="centre"><small><b>Description</b></small></td>
+      <td class="centre"><small>Prix<br>unitaire</small></td>
+    </tr>
+    </thead>
+    <tbody class="description">
+	
+  {% for transaction in transactions %}
+      Prix de reference: {{transaction.formula.price}}
+      Reduction: {{transaction.reduction}}
+    <tr>
+      <td>{{transaction.formula.name}}</td>
+
+      <td>{{transaction.price}}
+      {% if transaction.price < transaction.formula.price %}</td>
+    </tr>
+	{% endif %}
+
+    </div>
+  </div>
+  {% endfor %}
+
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    </tbody>
+    <tr class="totalaprestaxes" >
+      <td class="droite"><small><b>TOTAL taxes incluses :</b></small></td>
+
+      <td></td>
+     <td></td>
+      <td><b>1 997,89 $</b></td>
+    </tr>
+</table>
+
+
+
+{% endblock %}
