@@ -9,7 +9,7 @@ html, body {height:100%}
 /* Header */
 header .container {overflow:hidden}
 /* Sidebar */
-aside {background:url(/media/jjhec/images/aside-tail.gif) repeat-x left top #131313;min-width:980px;margin:0;padding0}
+aside {background:url(/media/jjhec/images/aside-tail.gif) repeat-x left top #131313;min-width:980px;margin:0;padding:0}
 /* Footer */
 footer .container {text-align:center;width:100%;line-height:1.667em;padding:26px 0;background-color:#fff}
 /* Left & Right alignment */
