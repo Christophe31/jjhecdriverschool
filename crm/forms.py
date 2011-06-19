@@ -74,6 +74,6 @@ class TransactionSelling(forms.ModelForm):
 
 
 class ExamForm(forms.Form):	
-    type = forms.ChoiceField(choices=models.Exam.LICENCES)
-    exam = forms.ChoiceField()
+    type = forms.ChoiceField(choices=models.Exam.LICENCES,help_text="Le type d'examen")
+    exam = forms.ChoiceField(help_text="Choix de l'examen pour l'inscription")
 	
