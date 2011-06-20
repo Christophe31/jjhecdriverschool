@@ -36,7 +36,7 @@ class UserForm(forms.Form):
                     postal_code=cd["postal_code"],
                     town=cd["town"],
                     phone_number=cd["phone_number"],
-                    type=dict((v,k) for k,v in  models.UserProfile.TYPES)
+                    type=dict((v, k) for k, v in  models.UserProfile.TYPES)
                                                               ["Customer"]
             )
         prof.save()
@@ -53,7 +53,7 @@ class BillingForm(forms.ModelForm):
         customer = kwargs.pop('customer', None)
         super(BillingForm, self).__init__(*args, **kwargs)
         if (seller == None or customer == None):
-            raise Exception("BillingForm nee a `user` and a `customer` argument")
+            raise Exception("BillingForm need `user` and `customer` argument")
         self.instance.seller = seller
         self.instance.customer = customer
 
@@ -61,11 +61,11 @@ class BillingForm(forms.ModelForm):
 class CodeMarkForm(forms.ModelForm):
     class Meta:
         model = models.CodeMark
-        exclude=('user',)
+        exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         customer = kwargs.pop('user', None)
-        super(CodeMarkForm, self).__init__(*args,**kwargs)
+        super(CodeMarkForm, self).__init__(*args, **kwargs)
         self.instance.user = customer
 
 
@@ -75,7 +75,8 @@ class TransactionSelling(forms.ModelForm):
 
 
 class ExamForm(forms.Form):
-    type = forms.ChoiceField(choices=models.Exam.LICENCES,help_text="Le type d'examen")
+    type = forms.ChoiceField(choices=models.Exam.LICENCES,
+                             help_text="Le type d'examen")
     exam = forms.ChoiceField(help_text="Choix de l'examen pour l'inscription")
 
 

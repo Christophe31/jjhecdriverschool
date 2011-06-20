@@ -76,7 +76,13 @@ def add_score(request, user_id=None):
 @permission_required('view_customers')
 def register_formation(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
-    form = forms.DrivingLessonForm()
+    if request.POST:
+        form = forms.DrivingLessonForm(request.POST, customer=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('crm.index')
+    else:
+        form = forms.DrivingLessonForm(customer=customer)
     return render(request, "crm/register_formation.html",
                   {
                       'customer': customer,
@@ -89,7 +95,13 @@ def register_formation(request, user_id=None):
 def register_exam(request, user_id=None):
     customer = get_object_or_404(User, pk=user_id)
     formations = models.Formation.objects.filter(transaction__in=customer.transactions_buyed.all())
-    form = forms.ExamForm()
+    if request.POST:
+        form = forms.ExamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('crm.index')
+    else:
+        form = forms.ExamForm()
     return render(request, "crm/register_exam.html",
                   {
 				      "form": form,
