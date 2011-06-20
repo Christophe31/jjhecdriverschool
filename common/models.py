@@ -200,7 +200,7 @@ class Formation(Event):
                                    choices=((i, str(i)) for i in range(11)))
     trainer = models.ForeignKey(User, verbose_name="Formateur")
     transaction = models.ForeignKey(Transaction, verbose_name="Contrat lié")
-    comment = models.TextField(u"commentaire")
+    comment = models.TextField(u"commentaire", blank=True, null=True)
     TYPES = [e for e in Package.TYPES if "Conduite" in e[1]]
 
     class Meta:

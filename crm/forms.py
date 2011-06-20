@@ -3,7 +3,7 @@
 from django import forms
 from django.contrib.auth import models as auth_models
 from common import models
-
+import itertools
 
 class UserForm(forms.Form):
     username = forms.CharField()
@@ -92,28 +92,19 @@ class DrivingLessonForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         customer = kwargs.pop('customer', None)
         super(DrivingLessonForm, self).__init__(*args, **kwargs)
-        packages_and_formations = (
-                  [
-                      transaction.formula.package_set.all(),
-                      dict([
-                              [
-                                  t,
-                                  transaction.formation_set.filter(
-                                      package__type__exact=t).count()
-                              ]
-                              for t in dict(models.Formation.TYPES)
-                       ])
-                  ]
-                  for transaction in customer.transactions_buyed.all()
+        packages = itertools.chain(
+                       list(
+                           transaction.formula.package_set.filter(type__in=dict(models.Formation.TYPES).keys())
+                       )
+                       for transaction in customer.transactions_buyed.all()
                                             .select_related('formula'))
-        self.available = {}
 
-        import pdb;pdb.set_trace()  ## Breakpoint ##
-        for packs in packages_and_formations:
-            for pack in packs[0]:
-                self.available[pack.type] = (self.available.get(pack.type, 0)
-                                               + pack.quantity)
-            for formations in packs[1]:
-                self.available[formations] -= packs[1][formations]
+        self.available ={}
+        for ps in packages:
+            for p in ps:
+                self.available[p.type] = self.available.get(p.type,0) + p.quantity
+        for format in models.Formation.objects.filter(transaction__in=customer.transactions_buyed.all()).filter(package__type__in=self.available.keys()).select_related('package').distinct():
+            self.available[format.package.type] -= int(round(float((format.end - format.start).seconds)/3600))
+
         print self.available
 
