@@ -196,11 +196,12 @@ class Formation(Event):
     agence = models.ForeignKey(Place, verbose_name=u"lieu", null=True)
     vehicule = models.ForeignKey(Vehicule, verbose_name=u"vehicule", null=True)
     package = models.ForeignKey(Package, verbose_name=u"forfait", null=True)
-    aptitude = models.IntegerField("aptitude relevée",
+    aptitude = models.IntegerField("aptitude relevée",null=True, blank=True,
                                    choices=((i, str(i)) for i in range(11)))
     trainer = models.ForeignKey(User, verbose_name="Formateur")
     transaction = models.ForeignKey(Transaction, verbose_name="Contrat lié")
     comment = models.TextField(u"commentaire")
+    TYPES = [e for e in Package.TYPES if "Conduite" in e[1]]
 
     class Meta:
         verbose_name = u"formation"
