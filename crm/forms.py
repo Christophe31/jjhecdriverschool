@@ -81,6 +81,39 @@ class ExamForm(forms.Form):
 
 
 class DrivingLessonForm(forms.ModelForm):
+
+    lesson_type = forms.ChoiceField(choices=models.Formation.TYPES)
+
     class Meta:
         model = models.Formation
-        exclude = ('customer', 'comment', 'agence')
+        exclude = ('customer', 'comment', 'aptitude', 'agence',
+                   'package', 'transaction')
+
+    def __init__(self, *args, **kwargs):
+        customer = kwargs.pop('customer', None)
+        super(DrivingLessonForm, self).__init__(*args, **kwargs)
+        packages_and_formations = (
+                  [
+                      transaction.formula.package_set.all(),
+                      dict([
+                              [
+                                  t,
+                                  transaction.formation_set.filter(
+                                      package__type__exact=t).count()
+                              ]
+                              for t in dict(models.Formation.TYPES)
+                       ])
+                  ]
+                  for transaction in customer.transactions_buyed.all()
+                                            .select_related('formula'))
+        self.available = {}
+
+        import pdb;pdb.set_trace()  ## Breakpoint ##
+        for packs in packages_and_formations:
+            for pack in packs[0]:
+                self.available[pack.type] = (self.available.get(pack.type, 0)
+                                               + pack.quantity)
+            for formations in packs[1]:
+                self.available[formations] -= packs[1][formations]
+        print self.available
+
