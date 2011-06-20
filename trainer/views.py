@@ -10,7 +10,12 @@ def mark_client(request, id=None):
                 .filter(trainer__exact=request.user)
                 .filter(start__lt=datetime.datetime.now())
                 .order_by('-start')).next().id
-    form = forms.MarkCustommerForm(instance=get_object_or_404(models.CodeMark, pk=id))
+    if request.POST:
+        form = forms.MarkCustommerForm(request.POST, instance=get_object_or_404(models.CodeMark, pk=id))
+        if form.is_valid():
+            form.save()
+    else:
+        form = forms.MarkCustommerForm(instance=get_object_or_404(models.CodeMark, pk=id))
     return render(
             request,
             "trainer/mark_client.html",
