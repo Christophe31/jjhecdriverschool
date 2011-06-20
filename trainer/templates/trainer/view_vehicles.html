@@ -1,0 +1,8 @@
+{% extends 'base_mobile.html' %}
+{% block content %} 
+    <ul data-role="listview" data-theme="a">
+    {% for vehicle in vehicles %}
+        <li><a href="{% url trainer.declare_incident vehicle.id  %}">{{ vehicle.matriculation }} -  {{vehicle.model}}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}    

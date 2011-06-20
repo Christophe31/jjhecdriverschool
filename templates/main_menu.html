@@ -1,0 +1,56 @@
+﻿{% load flatpages %}
+    <header>
+    <div class="container">
+        <div class="header-box">
+            <div class="left">
+                <div class="right">
+                    <nav>
+                        <ul>
+                            <li><ul>
+                              {% get_flatpages for user as static_pages %}
+                              {% for page in static_pages %}
+                                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                              {% endfor %}
+                                </ul>
+                            </li>
+                            {% if perms.change_transaction %}
+                            <li><a href="{% url crm.index %}">crm</a></li>{% endif %}
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url profile.index %}">profile</a></li>{% endif %}
+                            {% if perms.change_results %}
+                            <li><a href="{% url trainer.index %}">trainer</a></li>{% endif %}
+                            {% if user.is_staff %}
+                            <li><a href="{% url admin:index %}">admin</a></li>{% endif %}
+                            <li><a href="{% url djangobb:index %}">forum</a></li>
+                            <li><a href="{% url zinnia_entry_archive_index %}">blog</a></li>
+                            {% comment %}
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url profile.logout %}">logout</a></li>{% else %}
+                            <li><a href="{% url profile.login %}">login</a></li>{% endif %}
+                            {% endcomment %}
+                        </ul>
+                    </nav>
+                <h1><a href="/"><span>Safe</span>Driving</a></h1>
+                </div>
+            </div>
+        </div>
+        <!--<span class="top-info">Votre Auto-&Eacute;cole Safe Driving | <a href="#">Offre Commerciale</a> &nbsp; l &nbsp; <a href="#"> Search</a></span>-->
+        {% if user.is_authenticated %}
+            <div id="login-form">Connecté en tant que <b>{{user.username}}</b>,<a href="{% url profile.logout %}">se déconnecter</a></div>
+        {% else %}
+            <form action="{% url profile.login %}" method="POST" id="login-form">
+                {% csrf_token %}
+                <fieldset>
+                    <span class="text">
+                        <input type="text" name="username" value="Username" onFocus="if(this.value=='Username'){this.value=''}" onBlur="if(this.value==''){this.value='Username'}">
+                    </span>
+                    <span class="text">
+                        <input type="password" onKeyPress="return loginFormKeyPressed(this,event)" name="password" value="Password" onFocus="if(this.value=='Password'){this.value=''}" onBlur="if(this.value==''){this.value='Password'}">
+                    </span>
+                    <a href="#" class="login" onClick="document.getElementById('login-form').submit()"><span><span>Login</span></span></a>
+                    {# <span class="links"><a href="#">Forgot Password?</a><br/><a href="#">Register</a></span> #}
+                </fieldset>
+            </form>
+        {% endif %}
+    </div>
+</header>
