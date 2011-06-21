@@ -5,6 +5,7 @@ from django.contrib.auth import models as auth_models
 from common import models
 import itertools
 
+
 class UserForm(forms.Form):
     username = forms.CharField()
     first_name = forms.CharField()
@@ -94,17 +95,25 @@ class DrivingLessonForm(forms.ModelForm):
         super(DrivingLessonForm, self).__init__(*args, **kwargs)
         packages = itertools.chain(
                        list(
-                           transaction.formula.package_set.filter(type__in=dict(models.Formation.TYPES).keys())
+                           transaction.formula.package_set.filter(
+                               type__in=dict(models.Formation.TYPES).keys())
                        )
                        for transaction in customer.transactions_buyed.all()
                                             .select_related('formula'))
 
-        self.available ={}
+        available = {}
         for ps in packages:
             for p in ps:
-                self.available[p.type] = self.available.get(p.type,0) + p.quantity
-        for format in models.Formation.objects.filter(transaction__in=customer.transactions_buyed.all()).filter(package__type__in=self.available.keys()).select_related('package').distinct():
-            self.available[format.package.type] -= int(round(float((format.end - format.start).seconds)/3600))
+                available[p.type] = available.get(p.type, 0) + p.quantity
+        for format in (models.Formation.objects
+                     .filter(transaction__in=customer.transactions_buyed.all())
+                     .filter(package__type__in=available.keys())
+                     .select_related('package').distinct()):
+            available[format.package.type] -= int(round(float(
+                                (format.end - format.start).seconds) / 3600))
 
-        print self.available
-
+        self.fields['lesson_type'].choices = (
+                        (id, dict(models.Formation.TYPES)[id] +
+                             " (%s heures restantes)" % (q,))
+                        for id, q in available.iteritems())
+        self.available = available
