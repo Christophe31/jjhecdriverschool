@@ -175,7 +175,7 @@ class Maintenance(Event):
         ordering = ("id",)
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
 
 class CodeMark(models.Model):
