@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^profile/', include(profile.urls)),
     url(r'^trainer/', include(trainer.urls)),
     # external module routing
+    url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ma/', include(jqmobile.site.urls)),
     url(r'^weblog/', include('zinnia.urls')),

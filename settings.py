@@ -40,6 +40,8 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = path.join(basepath, 'static')
 STATIC_URL = '/static/'
 
+ADMIN_TOOLS_MEDIA_URL = MEDIA_URL
+
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -98,6 +100,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
+    'django.core.context_processors.debug',
     'django.core.context_processors.static',
     'django.core.context_processors.media',
     'zinnia.context_processors.media',
@@ -112,6 +115,12 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    # admin packages
+    'mobileadmin',
+    'jqmobile',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
     # django built in apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,8 +146,6 @@ INSTALLED_APPS = (
     'messages',
     'djangobb_forum',
     'haystack',
-    'mobileadmin',
-    'jqmobile',
 
     # local apps
     'jjhecdriverschool.home',
