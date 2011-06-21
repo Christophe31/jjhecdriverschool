@@ -34,6 +34,7 @@ admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(mod.Formula, FormulaAdmin)
 admin.site.register(mod.Vehicule)
+admin.site.register(mod.Maintenance)
 admin.site.register(mod.Event)
 admin.site.register(mod.Place)
 admin.site.register(mod.Formation)
