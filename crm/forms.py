@@ -82,7 +82,6 @@ class ExamForm(forms.Form):
 
 
 class DrivingLessonForm(forms.ModelForm):
-
     lesson_type = forms.ChoiceField(choices=models.Formation.TYPES)
 
     class Meta:
