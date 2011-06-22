@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth import models as auth_models
 from common import models
 import itertools
+import datetime
 
 
 class UserForm(forms.Form):
@@ -76,9 +77,14 @@ class TransactionSelling(forms.ModelForm):
 
 
 class ExamForm(forms.Form):
-    type = forms.ChoiceField(choices=models.Exam.LICENCES,
+    type = forms.ChoiceField(choices=itertools.chain([('0',"_________")],
+                                                models.Exam.LICENCES),
                              help_text="Le type d'examen")
-    exam = forms.ChoiceField(help_text="Choix de l'examen pour l'inscription")
+    exam = forms.ModelChoiceField(queryset=models.Exam.objects.filter(start__gte=datetime.datetime.now()),
+                            help_text="Choix de l'examen pour l'inscription")
+
+    def save(self, customer):
+        self.cleaned_data['exam'].subscribers.add(customer)
 
 
 class DrivingLessonForm(forms.ModelForm):
