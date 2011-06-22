@@ -93,7 +93,7 @@ class Transaction(models.Model):
 
     @property
     def reduction(self):
-        return self.price / self.formula.price * 100
+        return (1 - float(self.price) / self.formula.price) * 100
 
     def __unicode__(self):
         return u"Vente par %s à %s pour %s €" % (self.seller.username,

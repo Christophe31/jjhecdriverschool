@@ -10,6 +10,7 @@ from django.utils import simplejson as json
 from profile import forms
 import datetime
 import time
+import operator
 from common import models
 
 
@@ -110,4 +111,5 @@ def bill(request, user=None):
                   "profile/bill.html",
                   {
                       "transactions": transactions,
+                      "total": reduce(lambda x, y:x + y.price, transactions, 0)
                   })
