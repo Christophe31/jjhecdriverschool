@@ -9,8 +9,6 @@ from django.http import HttpResponse, Http404
 from django.utils import simplejson as json
 from profile import forms
 import datetime
-import time
-import operator
 from common import models
 
 
@@ -59,9 +57,9 @@ def ajax_get_notes_range(request, start=None, end=None, user=None):
                                 int(float(end))))
         except:
             raise Http404()
+    qs = qs.order_by('date')
     return HttpResponse(json.dumps(
-            [[int(time.mktime(e.date.timetuple())), e.mark]
-                                for e in request.user.codemark_set.all()]
+            [[i, e.mark] for i,e in enumerate(request.user.codemark_set.all())]
         ))
 
 
@@ -86,7 +84,7 @@ def ajax_get_appointments(request):
             {"id":event.id,
              "start":event.start.isoformat(),
              "end":event.end.isoformat(),
-             "title": event.title
+             "title": event.title,
             }
             for event in models.Event.objects.all()
         ]))
