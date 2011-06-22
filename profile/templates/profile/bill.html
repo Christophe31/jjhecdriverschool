@@ -20,25 +20,22 @@ Bills
   <col align="right">
   <thead>
     <tr class="entete">
-      <td class="centre"><small><b>Description</b></small></td>
+      <td class="centre"><small><b>Titre</b></small></td>
+      <td class="centre"><small><b>Date</b></small></td>
       <td class="centre"><small>Prix<br>unitaire</small></td>
+      <td class="centre"><small><b>Description</b></small></td>
     </tr>
     </thead>
     <tbody class="description">
-	
   {% for transaction in transactions %}
-      Prix de reference: {{transaction.formula.price}}
-      Reduction: {{transaction.reduction}}
     <tr>
       <td>{{transaction.formula.name}}</td>
-
-      <td>{{transaction.price}}
-      {% if transaction.price < transaction.formula.price %}</td>
+      <td>{{transaction.date}}</td>
+      <td>{{transaction.price}}</td>
+      <td> {% if transaction.price < transaction.formula.price %}
+          Prix de reference: {{transaction.formula.price}} <br/> Reduction: {{transaction.reduction}}
+          {% endif %}</td>
     </tr>
-	{% endif %}
-
-    </div>
-  </div>
   {% endfor %}
 
     <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
@@ -48,7 +45,7 @@ Bills
 
       <td></td>
      <td></td>
-      <td><b>1 997,89 $</b></td>
+     <td><b>{{ total }} €</b></td>
     </tr>
 </table>
 
