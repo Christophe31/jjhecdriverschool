@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} | Safe Driving</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+<script type="text/javascript">
+$(function({
+        $.mobile.ajaxEnabled = false;
+        $.mobile.ajaxLinksEnabled = false;
+        $.mobile.ajaxFormsEnabled = false;
+}));
+
+</script>        
+{% block extra_head %}
+{% endblock %}
+</head>
+    <body>
+        <div data-role="page">
+        <header data-role="header">
+            <h1><a href="/trainer">Safe Drivng</a></h1>
+        </header>
+        <div data-role="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer data-role="footer">
+        </footer>
+</body>
+<html>

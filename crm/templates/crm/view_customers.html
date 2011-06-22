@@ -1,0 +1,65 @@
+﻿{% extends 'base.html' %}
+{% block title %}Liste des clients{% endblock %}
+{% block extra_head %}
+<script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+	$('#example').dataTable({
+					"bJQueryUI": true,
+                    "bAutoWidth": true,
+					"sPaginationType": "full_numbers"
+				});
+
+} );
+
+function executeAction(select, id){
+	switch (select)
+	{
+		case 1:
+		window.location.replace("{% url crm.billing 9001 %}".replace('9001', id ));
+		break;
+		case 2:
+		window.location.replace("{% url crm.add_score 9001 %}".replace('9001', id ));
+		break;
+		case 3:
+		window.location.replace("{% url crm.register_formation 9001 %}".replace('9001', id ));
+		break;
+		case 4:
+		window.location.replace("{% url crm.register_exam 9001 %}".replace('9001', id ));
+		break;
+	}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+	<table id="example" width="990px">
+		<thead>
+			<tr>
+				<td>UserName</td>
+				<td>Nom</td>
+				<td>Prenom</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+			<tr>
+				<td>{{ customer.username }}</td>
+				<td>{{ customer.first_name }}</td>
+				<td>{{ customer.last_name }}</td>
+				<td><select name="action" size="1" onchange="executeAction(this.selectedIndex, {{ customer.id }} )">
+						<option>-</option>
+						<option>Facturation</option>
+						<option>Nouveau score</option>
+						<option>Nouvelle formation</option>
+						<option>Inscription examen</option>
+					</select>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+    
+    <div class="span_link"><a href="{% url crm.register_user %}" class="button_link">Ajouter un Client</a></div>
+{% endblock %}

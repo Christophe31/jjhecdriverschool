@@ -1,0 +1,23 @@
+strict digraph {
+        subgraph cluster1 {
+                label="Developpers";
+                ch -> ch_pub     [label=push];
+                fr -> fr_pub     [label=push];
+                je -> je_pub     [label=push];
+                ju -> ju_pub     [label=push];
+                ch -> ch     [label=commit];
+                fr -> fr     [label=commit];
+                je -> je     [label=commit];
+                ju -> ju     [label=commit];
+        }
+                ch_pub -> merger         [label=pull];
+                fr_pub -> merger         [label=pull];
+                je_pub -> merger         [label=pull];
+                ju_pub -> merger         [label=pull];
+                merger -> Officiel       [label=push];
+                Officiel -> ch   [label=pull];
+                Officiel -> fr   [label=pull];
+                Officiel -> je   [label=pull];
+                Officiel -> ju   [label=pull];
+}
+

@@ -1,0 +1,42 @@
+﻿{% extends 'base.html' %}
+{% block title %}Safe Driving{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{MEDIA_URL}}jjhec/css/jcarousel.css" type="text/css" media="all">
+<script type="text/javascript" src="{{MEDIA_URL}}jjhec/js/jquery.jcarousel.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="inside">
+        <ul class="wrapper jcarousel-skin-tango" id="mycarousel">
+            {% for formule in formulas %}
+                <li class="box jcarousel-item-1">
+                    <div class="border-right">
+                        <div class="border-bot">
+                            <div class="border-left">
+                                <div class="left-top-corner">
+                                    <div class="right-top-corner">
+                                        <div class="right-bot-corner">
+                                            <div class="left-bot-corner">
+                                                <div class="inner">
+                                                    <h3>{{ formule.name }}</h3>
+                                                    <ul class="info-list">
+                                                        {% for package in formule.package_set.all %}
+                                                            <li><span>{{ package.type_text }}</span>{{ package.quantity }}</li>
+                                                        {% endfor %}
+
+                                                    </ul>
+                                                    <span class="price">{{ formule.price }} euros</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
