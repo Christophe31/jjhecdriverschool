@@ -181,7 +181,7 @@ class Maintenance(Event):
 class CodeMark(models.Model):
     mark = models.IntegerField("note", choices=([(i, str(i))
                                                  for i in range(41)][::-1]))
-    date = models.DateTimeField("heure", auto_now=True)
+    date = models.DateTimeField("heure", auto_now_add=True)
     user = models.ForeignKey(User, verbose_name="utilisateur noté")
 
     class Meta:
