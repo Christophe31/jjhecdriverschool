@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 import json
+import datetime
 from crm import forms
 from common import models
 
@@ -98,7 +99,7 @@ def register_exam(request, user_id=None):
     if request.POST:
         form = forms.ExamForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save(customer=customer)
             return redirect('crm.index')
     else:
         form = forms.ExamForm()
@@ -114,6 +115,7 @@ def ajax_get_exam(request):
 	    [[exam.id, unicode(exam)] for exam in
 			models.Exam.objects
 			.filter(license__exact=request.GET['type'])
+            .filter(start__gte=datetime.datetime.now())
 			.filter(agence__exact=request.user.get_profile().place)
 			#if exam.place_avail]
         ]
