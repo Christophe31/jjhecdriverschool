@@ -9,19 +9,20 @@ register_exam
 <script language="javascript" type="text/javascript" src="{{ MEDIA_URL }}js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
 <script type="text/javascript" language="javascript" src="{{MEDIA_URL}}jjhec/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript">
-$(function(){ 
+$(function(){
       $.jqplot.config.enablePlugins = true;
       $.ajax({
-          url: '{% url profile.ajax_get_notes_range %}',
+          url: '{% url profile.ajax_get_notes_range_for_user customer.id %}',
           dataType: 'json',
           success: function(data){
-				var serie = [[1, 35], [2, 32], [3, 37], [4, 29], [5, 36]];
-				$.jqplot('graph',  [data],
-				{ title:'Exponential Line',
-				  axes:{yaxis:{min:0, max:40}},
-				  seriesDefaults:{renderer:$.jqplot.bezierCurveRenderer}
-				  
-				});
+            $.jqplot('graph',  [data],
+                  { title:'Notes au code',
+                    axes:{yaxis:{min:0, max:40},xaxis:{renderer:$.jqplot.DateAxisRenderer, tickOptions:{show: false}}},
+                    seriesDefaults:{
+                      renderer:$.jqplot.bezierCurveRenderer,
+                      color: '#6E9903'
+                    }
+                  });
           }
       });
 $('#example').dataTable({
@@ -34,9 +35,9 @@ $('#example').dataTable({
 
 $(function(){
 	$("#id_type").change(function(){
-		
+
 		$("#id_exam").empty();
-		
+
 		$.get('{% url crm.ajax_get_exam %}',
 				{ type: $("#id_type").val() },
 				function(data){
@@ -62,6 +63,7 @@ $(function(){
       <button type="submit" class="primaryAction">register_exam</button>
     </div>
 	<div id="tabcenter">
+<div id="graph" class='plot'></div>
 	<table id="example" class>
 		<thead>
 			<tr>
